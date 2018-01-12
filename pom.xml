@@ -6,7 +6,7 @@
 	<name>Language File Generator</name>
 	<url>http://maven.apache.org</url>
 	<description>This project defines an XML schema which holds translated text resoures. The "producer plugin" translates this file to the platform specific message files.</description>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 
 	<licenses>
 		<license>
@@ -15,6 +15,17 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+	
+	<developers>
+		<developer>
+			<name>Michael Höreth</name>
+			<url>http://hoereth.info</url>
+			<roles>
+				<role>architect</role>
+        		<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
 
 	<scm>
 		<url>https://github.com/hoereth/i18n-maven-plugin</url>
