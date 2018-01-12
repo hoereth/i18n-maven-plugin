@@ -6,7 +6,7 @@
 	<name>Language File Generator</name>
 	<url>http://maven.apache.org</url>
 	<description>This project defines an XML schema which holds translated text resoures. The "producer plugin" translates this file to the platform specific message files.</description>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 
 	<licenses>
 		<license>
