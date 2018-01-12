@@ -13,7 +13,7 @@ import java.util.Properties;
  * conflicts with source control. Plus: the original "store" Method had a bug
  * related to the escaping of apostrophes.
  * 
- * @autor Michael Höreth
+ * @author Michael Höreth
  * 
  */
 public class NoTimestampProperties extends Properties {
