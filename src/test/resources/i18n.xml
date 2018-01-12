@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table xmlns="http://pentabyte.de/maven/i18n"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://pentabyte.de/maven/i18n http://pentabyte.de/maven/i18n/table-1.0.xsd">
+	<locale-config>
+		<exported-locale value="de" fallback="en"/>
+		<exported-locale value="en"/>
+		<exported-locale value="fr" fallback="de"/>
+	</locale-config>
+
+	<output format="JAVA_PROPERTIES"/>
+	<output format="JAVASCRIPT"/>
+	<output format="C_STRINGS"/>
+
+	<entry key="question">
+		<text locale="en">Question</text>
+		<text locale="de">Frage</text>
+		<text locale="fr">Question</text>
+	</entry>
+
+	<entry key="dialog">
+		<entry key="confirm_update">
+			<text locale="en">${question}: Do you really want to update?</text>
+			<text locale="de">${question}: Möchten Sie wirklich updaten?</text>
+		</entry>
+		
+		<entry key="next_week">
+			<description>If the user chooses this action, then there should be a reminder next week.</description>
+			<text locale="de">Erinnere mich nächste Woche!</text>
+			<text locale="en">Remind me next week!</text>
+		</entry>
+	</entry>
+	
+	<entry key="yes">
+		<text locale="en">yes</text>
+		<text locale="de">ja</text>
+		<text locale="fr">oui</text>
+	</entry>
+	
+	<entry key="no">
+		<text locale="de">nein</text>
+		<text locale="en">no</text>
+		<text locale="fr">non</text>
+	</entry>
+</table>
