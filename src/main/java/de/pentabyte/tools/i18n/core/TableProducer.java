@@ -5,9 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
@@ -40,9 +38,11 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import de.pentabyte.maven.i18n.format.cstrings.StringsWriter;
+import de.pentabyte.maven.i18n.format.java.JavaAccessorCreator;
 import de.pentabyte.maven.i18n.format.java.JavaPropertiesWriter;
 import de.pentabyte.maven.i18n.format.javascript.JavascriptWriter;
+import de.pentabyte.maven.i18n.format.strings.StringsWriter;
+import de.pentabyte.maven.i18n.output.LanguageFileWriter;
 
 /**
  * Converts between XML files (i18n-table.xsd format) and several kinds of
@@ -62,7 +62,7 @@ public class TableProducer {
 
 		Schema schema;
 		try {
-			schema = sf.newSchema(new StreamSource(TableProducer.class.getResourceAsStream("table-1.0.xsd")));
+			schema = sf.newSchema(new StreamSource(TableProducer.class.getResourceAsStream("table-1.1.xsd")));
 			factory.setSchema(schema);
 		} catch (SAXException e) {
 			throw new RuntimeException(e);
@@ -86,8 +86,8 @@ public class TableProducer {
 			outputDirectory = inputFile.getParentFile();
 		try {
 			log.info("processing: " + inputFile);
-			transformXML(new FileInputStream(inputFile), FilenameUtils.getBaseName(inputFile.getName()),
-					inputFile.getParentFile(), outputDirectory, outputBasename, outputFormat, keySeparator);
+			transformXML(inputFile, FilenameUtils.getBaseName(inputFile.getName()), inputFile.getParentFile(),
+					outputDirectory, outputBasename, outputFormat, keySeparator);
 		} catch (Exception e) {
 			throw new RuntimeException("Problem with [" + inputFile.getAbsolutePath() + "]", e);
 		}
@@ -126,7 +126,7 @@ public class TableProducer {
 	 * @param keySeparator
 	 *            Composite keys will be separated with this.
 	 */
-	private static Table readXmlFile(InputStream is, String keySeparator) throws Exception {
+	private static Table readXmlFile(File tableFile, String keySeparator) throws Exception {
 		Table table = new Table();
 		DocumentBuilder db = factory.newDocumentBuilder();
 		db.setErrorHandler(new ErrorHandler() {
@@ -145,7 +145,7 @@ public class TableProducer {
 				throw new RuntimeException(exception);
 			}
 		});
-		Document doc = db.parse(is);
+		Document doc = db.parse(tableFile);
 		Element rootElem = doc.getDocumentElement();
 
 		NodeList nodeList = rootElem.getChildNodes();
@@ -166,7 +166,7 @@ public class TableProducer {
 					processEntry(e, table, "", keySeparator);
 				}
 				if (e.getTagName().equals("output")) {
-					processOutput(e, table);
+					processOutput(tableFile.getParentFile(), e, table);
 				}
 			}
 		}
@@ -194,7 +194,7 @@ public class TableProducer {
 	/**
 	 * Liest einen "output" Konfig-Eintrag ein
 	 */
-	private static void processOutput(Element element, Table table) {
+	private static void processOutput(File tableDirectory, Element element, Table table) {
 		String directory = element.getAttribute("directory");
 		String basename = element.getAttribute("basename");
 		String keySeparator = element.getAttribute("basename");
@@ -210,7 +210,44 @@ public class TableProducer {
 		if (StringUtils.isNotEmpty(format))
 			output.setFormat(LanguageFileFormat.valueOf(format));
 
+		NodeList nodeList = element.getChildNodes();
+
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			Node node = nodeList.item(i);
+			if (node instanceof Element) {
+				Element e = (Element) node;
+				if (e.getTagName().equals("javaAccessor")) {
+					output.setJavaAccessor(readJavaAccessor(tableDirectory, e));
+				}
+			}
+		}
+
 		table.getOutput().add(output);
+	}
+
+	/**
+	 * @param e
+	 * @return
+	 */
+	private static JavaAccessor readJavaAccessor(File tableDirectory, Element e) {
+		JavaAccessor accessor = new JavaAccessor();
+
+		String directory = e.getAttribute("directory");
+		String packageName = e.getAttribute("packageName");
+		String className = e.getAttribute("className");
+		String resourceBundleBaseName = e.getAttribute("resourceBundleBaseName");
+
+		if (StringUtils.isNotEmpty(directory)) {
+			accessor.setDirectory(new File(tableDirectory, directory));
+		}
+		if (StringUtils.isNotEmpty(packageName))
+			accessor.setPackageName(packageName);
+		if (StringUtils.isNotEmpty(className))
+			accessor.setClassName(className);
+		if (StringUtils.isNotEmpty(resourceBundleBaseName))
+			accessor.setResourceBundleBaseName(resourceBundleBaseName);
+
+		return accessor;
 	}
 
 	/**
@@ -258,9 +295,8 @@ public class TableProducer {
 	/**
 	 * Output-File is written here.
 	 */
-	private static void generateLocalizedFile(String inputBasename, File outputDirectory, String outputBasename,
-			ExportedLocale locale, Table table, LanguageFileFormat outputFormat, String keySeparator)
-			throws IOException {
+	private static void generateLocalizedFile(File tableDirectory, String inputBasename, ExportedLocale locale,
+			Table table, Output output) throws IOException {
 
 		String fallback = locale.getFallback() != null ? ", Fallback: " + locale.getFallback() : "";
 
@@ -268,41 +304,49 @@ public class TableProducer {
 				+ "] with i18n-maven-plugin. Localization: " + locale.getValue() + fallback + ". "
 				+ "Please do not edit this file manually!";
 
-		switch (outputFormat) {
-		case JAVA_PROPERTIES: {
-			new JavaPropertiesWriter().write(inputBasename, outputDirectory, outputBasename, locale, table,
-					fileComment);
+		LanguageFileWriter writer;
+
+		switch (output.getFormat()) {
+		case JAVA_PROPERTIES:
+			writer = new JavaPropertiesWriter();
 			break;
-		}
-		case C_STRINGS: {
-			new StringsWriter().write(inputBasename, outputDirectory, outputBasename, locale, table, fileComment);
+		case STRINGS:
+			writer = new StringsWriter();
 			break;
-		}
 		case JAVASCRIPT: {
-			if (keySeparator != null && !keySeparator.equals(".")) {
+			if (output.getKeySeparator() != null && !output.getKeySeparator().equals(".")) {
 				throw new RuntimeException("Für JAVASCRIPT ist nur der Punkt als Separator erlaubt!");
 			}
 
-			new JavascriptWriter().write(inputBasename, outputDirectory, outputBasename, locale, table, fileComment);
-
+			writer = new JavascriptWriter();
 			break;
 		}
+		default:
+			throw new RuntimeException("OutputFormat not implemented: " + output.getFormat());
 		}
 
+		writer.write(tableDirectory, inputBasename, output, locale, table, fileComment);
 	}
 
 	/**
-	 * Generates individual properties files based on the processed XML file
-	 * with a prior call to processXmlFile method.
+	 * Generates individual properties files based on the processed XML file.
 	 * 
 	 * @param baseName
 	 *            path to the generated properties files excluding locale
 	 *            information and extension.
 	 */
-	public static void generateLocalizedFiles(String inputBasename, File outputDirectory, String baseName, Table table,
-			LanguageFileFormat outputFormat, String keySeparator) throws IOException {
+	public static void generateLocalizedFiles(File tableDirectory, String keySeparator, String inputBasename,
+			Table table, Output output) throws IOException {
+
 		for (ExportedLocale locale : table.getExportedLocales()) {
-			generateLocalizedFile(inputBasename, outputDirectory, baseName, locale, table, outputFormat, keySeparator);
+			generateLocalizedFile(tableDirectory, inputBasename, locale, table, output);
+		}
+
+		if (output.getJavaAccessor() != null) {
+			JavaAccessor accessor = output.getJavaAccessor();
+			System.out.println("NOW creating java accessor: " + output.getJavaAccessor());
+			JavaAccessorCreator creator = new JavaAccessorCreator(table, keySeparator);
+			creator.write(accessor);
 		}
 	}
 
@@ -312,21 +356,28 @@ public class TableProducer {
 	 * @param is
 	 * @throws Exception
 	 */
-	private static void transformXML(InputStream is, String inputBasename, File includePath, File outputDirectory,
+	private static void transformXML(File inputFile, String inputBasename, File includePath, File outputDirectory,
 			String outputBasename, LanguageFileFormat outputFormat, String keySeparator) throws Exception {
-		Table table = readXmlFile(is, keySeparator);
+		Table table = readXmlFile(inputFile, keySeparator);
+
+		Output pluginOutput = new Output();
+		pluginOutput.setBasename(outputBasename);
+		pluginOutput.setDirectory(outputDirectory);
+		pluginOutput.setFormat(outputFormat);
+		pluginOutput.setKeySeparator(keySeparator);
 
 		if (table.getOutput().size() == 0) {
-			generateLocalizedFiles(inputBasename, outputDirectory, outputBasename, table, outputFormat, keySeparator);
+			generateLocalizedFiles(inputFile.getParentFile(), keySeparator, inputBasename, table, pluginOutput);
 		} else {
 			for (Output output : table.getOutput()) {
-				File customDirectory = output.getDirectory() == null ? outputDirectory : output.getDirectory();
-				String customBasename = output.getBasename() == null ? outputBasename : output.getBasename();
-				LanguageFileFormat customFormat = output.getFormat() == null ? outputFormat : output.getFormat();
-				String customKeySeparator = output.getKeySeparator() == null ? keySeparator : output.getKeySeparator();
+				Output custom = new Output();
+				custom.setBasename(output.getBasename() == null ? pluginOutput.getBasename() : output.getBasename());
+				custom.setDirectory(
+						output.getDirectory() == null ? pluginOutput.getDirectory() : output.getDirectory());
+				custom.setFormat(output.getFormat() == null ? pluginOutput.getFormat() : output.getFormat());
+				custom.setJavaAccessor(output.getJavaAccessor());
 
-				generateLocalizedFiles(inputBasename, customDirectory, customBasename, table, customFormat,
-						customKeySeparator);
+				generateLocalizedFiles(inputFile.getParentFile(), keySeparator, inputBasename, table, custom);
 			}
 		}
 	}
@@ -385,7 +436,7 @@ public class TableProducer {
 			}
 		}
 			break;
-		case C_STRINGS: {
+		case STRINGS: {
 			File[] dirs = directory.listFiles();
 			Pattern filePattern = Pattern.compile(outputBasename + "\\." + outputFormat.getExtension());
 			Pattern dirPattern = Pattern.compile("(\\w+_?\\w*)\\.lproj");
@@ -404,6 +455,8 @@ public class TableProducer {
 				}
 			}
 		}
+		default:
+			throw new RuntimeException("OutputFormat not implemented: " + outputFormat);
 		}
 
 		writeTableToXml(table, new File(directory, inputBasename + ".xml"), keySeparator);
@@ -422,7 +475,7 @@ public class TableProducer {
 			p.load(new FileInputStream(file));
 			break;
 		}
-		case C_STRINGS: {
+		case STRINGS: {
 			Pattern pattern = Pattern
 					.compile(" *\"?([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\"? *= *\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\" *; *");
 			BufferedReader br = new BufferedReader(
@@ -482,7 +535,7 @@ public class TableProducer {
 		}
 
 		// Mal ganz schnell die flache Liste in eine Hierarchie überführen.
-		Map<String, EntryNode> nodes = createHierarchy(table, keySeparator);
+		Map<String, EntryNode> nodes = table.createHierarchy(keySeparator);
 
 		for (Map.Entry<String, EntryNode> node : nodes.entrySet()) {
 			append(doc, rootElement, node.getKey(), node.getValue());
@@ -497,47 +550,6 @@ public class TableProducer {
 		StreamResult result = new StreamResult(outputFile);
 
 		t.transform(source, result);
-	}
-
-	/**
-	 * Die "Table" Datenstruktur ist flach. Hiermit kann man eine Hierarchie
-	 * erzeugen.
-	 */
-	private static Map<String, EntryNode> createHierarchy(Table table, String keySeparator) {
-		// Mal ganz schnell die flache Liste in eine Hierarchie überführen.
-		Map<String, EntryNode> nodes = new LinkedHashMap<String, EntryNode>();
-		for (Map.Entry<String, Entry> entry : table.getEntries().entrySet()) {
-			String key = entry.getKey();
-			Entry e = entry.getValue();
-
-			String[] parts = key.split(Pattern.quote(keySeparator));
-
-			EntryNode node = nodes.get(parts[0]);
-
-			if (node == null) {
-				node = new EntryNode();
-				nodes.put(parts[0], node);
-			}
-
-			for (int level = 0; level < parts.length; level++) {
-				if (level > 0) {
-					String keyFragment = parts[level];
-					// nur Struktur
-					EntryNode nextLevel = node.getNodes().get(keyFragment);
-					if (nextLevel == null) {
-						nextLevel = new EntryNode();
-						node.getNodes().put(keyFragment, nextLevel);
-					}
-					node = nextLevel;
-				}
-
-				if (level == parts.length - 1) {
-					// Werte reinschreiben
-					node.getTextMap().putAll(e.getTextMap());
-				}
-			}
-		}
-		return nodes;
 	}
 
 	private static void append(Document doc, Element parent, String key, EntryNode value) {

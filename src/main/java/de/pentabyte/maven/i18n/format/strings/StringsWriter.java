@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.pentabyte.maven.i18n.format.cstrings;
+package de.pentabyte.maven.i18n.format.strings;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,6 +14,7 @@ import de.pentabyte.maven.i18n.output.LanguageFileWriter;
 import de.pentabyte.tools.i18n.core.Entry;
 import de.pentabyte.tools.i18n.core.ExportedLocale;
 import de.pentabyte.tools.i18n.core.LanguageFileFormat;
+import de.pentabyte.tools.i18n.core.Output;
 import de.pentabyte.tools.i18n.core.Table;
 
 /**
@@ -32,14 +33,14 @@ public class StringsWriter implements LanguageFileWriter {
 	 * de.pentabyte.maven.i18n.core.Table, java.lang.String)
 	 */
 	@Override
-	public void write(String inputBasename, File outputDirectory, String outputBasename, ExportedLocale locale,
-			Table table, String fileComment) throws FileNotFoundException, IOException {
-		File subdir = new File(outputDirectory, locale.getValue() + ".lproj");
+	public void write(File tableDirectory, String inputBasename, Output output, ExportedLocale locale, Table table,
+			String fileComment) throws FileNotFoundException, IOException {
+		File subdir = new File(output.getDirectory(), locale.getValue() + ".lproj");
 		subdir.mkdir();
 
 		File file = new File(subdir,
-				(outputBasename == null ? (inputBasename == null ? "Localizable" : inputBasename) : outputBasename)
-						+ "." + LanguageFileFormat.C_STRINGS.getExtension());
+				(output.getBasename() == null ? (inputBasename == null ? "Localizable" : inputBasename)
+						: output.getBasename()) + "." + LanguageFileFormat.STRINGS.getExtension());
 
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF16"));
 		writer.write("/* " + fileComment + " */\n\n");

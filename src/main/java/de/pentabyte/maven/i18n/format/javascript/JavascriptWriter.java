@@ -18,6 +18,7 @@ import de.pentabyte.maven.i18n.output.LanguageFileWriter;
 import de.pentabyte.tools.i18n.core.Entry;
 import de.pentabyte.tools.i18n.core.ExportedLocale;
 import de.pentabyte.tools.i18n.core.LanguageFileFormat;
+import de.pentabyte.tools.i18n.core.Output;
 import de.pentabyte.tools.i18n.core.Table;
 
 /**
@@ -37,8 +38,8 @@ public class JavascriptWriter implements LanguageFileWriter {
 	 * de.pentabyte.maven.i18n.core.Table, java.lang.String)
 	 */
 	@Override
-	public void write(String inputBasename, File outputDirectory, String outputBasename, ExportedLocale locale,
-			Table table, String fileComment) throws FileNotFoundException, IOException {
+	public void write(File tableDirectory, String inputBasename, Output output, ExportedLocale locale, Table table,
+			String fileComment) throws FileNotFoundException, IOException {
 		String suffix = StringUtils.isEmpty(locale.getValue()) ? "" : "_" + locale.getValue();
 
 		Map<String, Object> structure = new LinkedHashMap<>();
@@ -51,10 +52,10 @@ public class JavascriptWriter implements LanguageFileWriter {
 			}
 		}
 
-		String resultingBasename = (outputBasename == null ? (inputBasename == null ? "messages" : inputBasename)
-				: outputBasename);
+		String resultingBasename = (output.getBasename() == null ? (inputBasename == null ? "messages" : inputBasename)
+				: output.getBasename());
 
-		PrintWriter writer = new PrintWriter(new File(outputDirectory,
+		PrintWriter writer = new PrintWriter(new File(output.getDirectory(),
 				resultingBasename + suffix + "." + LanguageFileFormat.JAVASCRIPT.getExtension()));
 		writer.write("/* " + fileComment + " */\n\n");
 		writer.write("var " + resultingBasename + " = " + JSONObject.toJSONString(structure) + ";");

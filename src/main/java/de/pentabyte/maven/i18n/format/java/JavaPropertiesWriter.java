@@ -15,6 +15,7 @@ import de.pentabyte.maven.i18n.output.LanguageFileWriter;
 import de.pentabyte.tools.i18n.core.Entry;
 import de.pentabyte.tools.i18n.core.ExportedLocale;
 import de.pentabyte.tools.i18n.core.LanguageFileFormat;
+import de.pentabyte.tools.i18n.core.Output;
 import de.pentabyte.tools.i18n.core.Table;
 
 /**
@@ -32,11 +33,11 @@ public class JavaPropertiesWriter implements LanguageFileWriter {
 	 * de.pentabyte.maven.i18n.core.Table, java.lang.String)
 	 */
 	@Override
-	public void write(String inputBasename, File outputDirectory, String outputBasename, ExportedLocale locale,
-			Table table, String fileComment) throws FileNotFoundException, IOException {
+	public void write(File tableDirectory, String inputBasename, Output output, ExportedLocale locale, Table table,
+			String fileComment) throws FileNotFoundException, IOException {
 
-		String basename = (outputBasename == null ? (inputBasename == null ? "messages" : inputBasename)
-				: outputBasename);
+		String basename = (output.getBasename() == null ? (inputBasename == null ? "messages" : inputBasename)
+				: output.getBasename());
 
 		String suffix = StringUtils.isEmpty(locale.getValue()) ? "" : "_" + locale.getValue();
 		Properties p = new LinkedProperties();
@@ -48,10 +49,9 @@ public class JavaPropertiesWriter implements LanguageFileWriter {
 			}
 		}
 
-		File file = new File(outputDirectory,
+		File file = new File(output.getDirectory(),
 				basename + suffix + "." + LanguageFileFormat.JAVA_PROPERTIES.getExtension());
 		p.store(new FileOutputStream(file), fileComment);
-
 	}
 
 }

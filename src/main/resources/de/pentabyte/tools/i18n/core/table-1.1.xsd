@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://pentabyte.de/maven/i18n"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:i18n="http://pentabyte.de/maven/i18n"
+	elementFormDefault="qualified">
+	<xs:element name="table">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="locale-config" maxOccurs="1" minOccurs="1">
+                    <xs:annotation>
+                    	<xs:documentation>Translations should be provided for the locales defined here.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+						<xs:annotation>
+							<xs:documentation>
+								Defines the locales.
+							</xs:documentation>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="exported-locale" maxOccurs="unbounded"
+								minOccurs="1">
+								<xs:annotation>
+									<xs:documentation>
+										Locale to be exported.
+									</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="value" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation>Locale</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="fallback" type="xs:string"
+										use="optional">
+										<xs:annotation>
+											<xs:documentation>Fallback-Locale. Will use this locale if there is no translation for the this locale.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="output" maxOccurs="unbounded"
+					minOccurs="0">
+                    <xs:annotation>
+                    	<xs:documentation>Overwrites plugin configuration. You can specify more than one output format here.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+						<xs:annotation>
+							<xs:documentation>
+								Overwrites the plugin configuration.
+								Provides the possibility to define
+								multiple exports (with different output
+								formats).
+							</xs:documentation>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="javaAccessor" maxOccurs="1" minOccurs="0">
+                                <xs:annotation>
+                                	<xs:documentation>This element will trigger the creation of a Java class file.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:annotation>
+                                    	<xs:documentation>Contains all parameters necessary to create a Java accessor class file.</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:attribute name="directory"
+										type="xs:string" use="required">
+                                        <xs:annotation>
+                                        	<xs:documentation>Java source directory. Relative to this xml file.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+									<xs:attribute name="packageName"
+										type="xs:string" use="required">
+                                        <xs:annotation>
+                                        	<xs:documentation>Class will be created within this package.</xs:documentation>
+                                        </xs:annotation>
+									</xs:attribute>
+                                    <xs:attribute name="className" type="xs:string" use="required">
+                                        <xs:annotation>
+                                        	<xs:documentation>Java class name.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute
+										name="resourceBundleBaseName" type="xs:string"
+										use="required">
+                                        <xs:annotation>
+                                        	<xs:documentation>Classname path to properties - basename. E.g. just "messages".</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="basename" type="xs:string"
+							use="optional">
+                            <xs:annotation>
+                            	<xs:documentation>Basename of language files. "Per language" suffixes or directories will be created automatically.</xs:documentation>
+                            </xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="format">
+                            <xs:annotation>
+                            	<xs:documentation>Output format.</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration
+										value="JAVA_PROPERTIES">
+									</xs:enumeration>
+									<xs:enumeration
+										value="JAVA_ACCESSOR">
+									</xs:enumeration>
+									<xs:enumeration value="STRINGS"></xs:enumeration>
+									<xs:enumeration
+										value="JAVASCRIPT">
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="keySeparator"
+							type="xs:string">
+                            <xs:annotation>
+                            	<xs:documentation>Nested keys will be joined with this character.</xs:documentation>
+                            </xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="directory"
+							type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Output directory.
+									Destination directory of language
+									files.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="entry" type="i18n:entryType" maxOccurs="unbounded"
+					minOccurs="0">
+                    <xs:annotation>
+                    	<xs:documentation>Translation entry.</xs:documentation>
+                    </xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="entryType">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="description"
+				type="xs:string">
+				<xs:annotation></xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="text">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute use="optional" name="locale" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Locale. Can be omitted, if the translation is
+										identical for all locales. Might be the case if the text only
+										contains a placeholder.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="entry" type="i18n:entryType" maxOccurs="unbounded"
+				minOccurs="0">
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="key" type="xs:string">
+			<xs:annotation></xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

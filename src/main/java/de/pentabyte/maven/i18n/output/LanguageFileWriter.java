@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import de.pentabyte.tools.i18n.core.ExportedLocale;
+import de.pentabyte.tools.i18n.core.Output;
 import de.pentabyte.tools.i18n.core.Table;
 
 /**
@@ -27,7 +28,7 @@ public interface LanguageFileWriter {
 	 * @throws IOException
 	 * @throws FileNotFoundException
 	 */
-	public void write(String inputBasename, File outputDirectory, String outputBasename, ExportedLocale locale,
-			Table table, String fileComment) throws FileNotFoundException, IOException;
+	public void write(File tableDirectory, String inputBasename, Output output, ExportedLocale locale, Table table,
+			String fileComment) throws FileNotFoundException, IOException;
 
 }

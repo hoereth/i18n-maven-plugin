@@ -39,8 +39,4 @@ public class EntryNode {
 		return textMap;
 	}
 
-	public void setTextMap(Map<String, String> textMap) {
-		this.textMap = textMap;
-	}
-
 }

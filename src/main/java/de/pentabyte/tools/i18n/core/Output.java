@@ -13,6 +13,8 @@ public class Output {
 	private LanguageFileFormat format;
 	private String keySeparator;
 
+	private JavaAccessor javaAccessor;
+
 	public File getDirectory() {
 		return directory;
 	}
@@ -43,6 +45,14 @@ public class Output {
 
 	public void setKeySeparator(String keySeparator) {
 		this.keySeparator = keySeparator;
+	}
+
+	public JavaAccessor getJavaAccessor() {
+		return javaAccessor;
+	}
+
+	public void setJavaAccessor(JavaAccessor javaAccessor) {
+		this.javaAccessor = javaAccessor;
 	}
 
 }

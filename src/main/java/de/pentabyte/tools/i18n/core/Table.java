@@ -41,10 +41,6 @@ public class Table {
 		return entries;
 	}
 
-	public void setEntries(Map<String, Entry> entries) {
-		this.entries = entries;
-	}
-
 	public List<Output> getOutput() {
 		if (output == null) {
 			output = new ArrayList<>();
@@ -100,5 +96,48 @@ public class Table {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Die "Table" Datenstruktur ist flach. Hiermit kann man eine Hierarchie
+	 * erzeugen.
+	 */
+	public Map<String, EntryNode> createHierarchy(String keySeparator) {
+		// Mal ganz schnell die flache Liste in eine Hierarchie überführen.
+		Map<String, EntryNode> nodes = new LinkedHashMap<String, EntryNode>();
+		for (Map.Entry<String, Entry> entry : getEntries().entrySet()) {
+			String key = entry.getKey();
+			Entry e = entry.getValue();
+
+			String[] parts = key.split(Pattern.quote(keySeparator));
+
+			EntryNode node = nodes.get(parts[0]);
+
+			if (node == null) {
+				node = new EntryNode();
+				nodes.put(parts[0], node);
+			}
+
+			for (int level = 0; level < parts.length; level++) {
+				if (level > 0) {
+					String keyFragment = parts[level];
+					// nur Struktur
+					EntryNode nextLevel = node.getNodes().get(keyFragment);
+					if (nextLevel == null) {
+						nextLevel = new EntryNode();
+						node.getNodes().put(keyFragment, nextLevel);
+						node.setDescription(e.getDescription());
+					}
+					node = nextLevel;
+				}
+
+				if (level == parts.length - 1) {
+					// Werte reinschreiben
+					node.getTextMap().putAll(e.getTextMap());
+					node.setDescription(e.getDescription());
+				}
+			}
+		}
+		return nodes;
 	}
 }

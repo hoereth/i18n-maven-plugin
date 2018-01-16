@@ -13,7 +13,7 @@ public enum LanguageFileFormat {
 	/**
 	 * The typical "x/Localizable.strings" file
 	 */
-	C_STRINGS("strings"),
+	STRINGS("strings"),
 	/**
 	 * Plain javascript.
 	 */

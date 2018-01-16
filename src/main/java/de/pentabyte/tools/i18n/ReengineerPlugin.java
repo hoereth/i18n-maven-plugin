@@ -78,7 +78,7 @@ public class ReengineerPlugin extends AbstractMojo {
 		ReengineerPlugin plugin = new ReengineerPlugin();
 		plugin.tableFile = new File("/Users/hoereth/Documents/iOS/Maengelmelder/submodule/ChamaeleonLib/Main");
 		plugin.tableDirectory = new File("/Users/hoereth/Documents/iOS/Maengelmelder");
-		plugin.outputFormat = LanguageFileFormat.C_STRINGS;
+		plugin.outputFormat = LanguageFileFormat.STRINGS;
 		plugin.keySeparator = ".";
 		plugin.execute();
 	}
