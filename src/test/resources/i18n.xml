@@ -10,7 +10,7 @@
 
 	<output format="JAVA_PROPERTIES"/>
 	<output format="JAVASCRIPT"/>
-	<output format="C_STRINGS"/>
+	<output format="STRINGS"/>
 
 	<entry key="question">
 		<text locale="en">Question</text>

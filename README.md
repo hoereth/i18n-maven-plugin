@@ -1,6 +1,6 @@
 # i18n-maven-plugin
 
-Generator for language files. Supported target formats: JAVA, C_STRINGS, JAVASCRIPT.
+Generator for language files. Supported target formats: JAVA, STRINGS (XCode), JAVASCRIPT.
 
 ## Goals
 
