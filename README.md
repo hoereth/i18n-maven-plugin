@@ -42,7 +42,7 @@ This will be the source of your translations for any kind of programming languag
 <?xml version="1.0" encoding="UTF-8"?>
 <table xmlns="http://pentabyte.de/maven/i18n"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://pentabyte.de/maven/i18n http://pentabyte.de/maven/i18n/table-1.0.xsd">
+	xsi:schemaLocation="http://pentabyte.de/maven/i18n http://pentabyte.de/maven/i18n/table-1.1.xsd">
 	<locale-config>
 		<exported-locale value="de" fallback="en"/>
 		<exported-locale value="en"/>
