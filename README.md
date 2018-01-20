@@ -11,7 +11,7 @@ See "Getting Started" for configuring your pom for automatically executing the *
 
 ## Introduction
 
-Language files are designed for performance NOT for easy maintenance. Technical translation mistakes usually remain undetected. This plugin suggests that you rather maintain your translations in a structured and bullet-proof **i18n.xml** file. During the "generate-resources" phase, the plugin will create the language files of your choice. This is one more build step, but the following issues will be taken care of:
+Language files are designed for performance NOT for easy maintenance. Technical translation mistakes usually remain undetected. This plugin suggests that you rather maintain your translations in a structured and bullet-proof **i18n.xml** file. The plugin will create the language files of your choice. This is one more build step, but the following issues will be taken care of:
 
 ### Format
 
