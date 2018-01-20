@@ -72,7 +72,7 @@ Add this to your pom - and the plugin will translate all **i18n.xml** files into
 		<plugin>
 			<groupId>de.pentabyte.tools</groupId>
 			<artifactId>i18n-maven-plugin</artifactId>
-			<version>1.0.0</version>
+			<version>1.1.0</version>
 			<executions>
 				<execution>
 					<phase>generate-resources</phase>
