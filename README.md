@@ -48,11 +48,7 @@ This will be the source of your translations for any kind of programming languag
 		<exported-locale value="en"/>
 		<exported-locale value="fr" fallback="de"/>
 	</locale-config>
-
-	<output format="JAVA_PROPERTIES"/>
-	<output format="JAVASCRIPT"/>
-	<output format="STRINGS"/>
-
+	
 	<entry key="question">
 		<text locale="en">Question</text>
 		<text locale="de">Frage</text>
