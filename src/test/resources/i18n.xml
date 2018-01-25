@@ -31,16 +31,4 @@
 			<text locale="en">Remind me next week!</text>
 		</entry>
 	</entry>
-	
-	<entry key="yes">
-		<text locale="en">yes</text>
-		<text locale="de">ja</text>
-		<text locale="fr">oui</text>
-	</entry>
-	
-	<entry key="no">
-		<text locale="de">nein</text>
-		<text locale="en">no</text>
-		<text locale="fr">non</text>
-	</entry>
 </table>
