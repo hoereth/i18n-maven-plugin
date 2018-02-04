@@ -8,9 +8,9 @@
 		<exported-locale value="fr" fallback="de"/>
 	</locale-config>
 
-	<output format="JAVA_PROPERTIES"/>
+	<output format="JAVA_PROPERTIES" basename="messages"/>
 	<output format="JAVASCRIPT"/>
-	<output format="STRINGS"/>
+	<output format="STRINGS" basename="Localizable"/>
 
 	<entry key="question">
 		<text locale="en">Question</text>

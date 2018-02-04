@@ -35,7 +35,7 @@ You can take advantage of XCode's "Run Script" - build phase. If you specify the
 
 ![XCode Build Phase](xcode_build_phase.png)
 
-After you set up this build phase, you only need to edit the XML language table files.
+After you set up this build phase, you only need to edit the XML language table files and XCode will automatically run the i18n maven plugin for you.
 
 ## Results
 
