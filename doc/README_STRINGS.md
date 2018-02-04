@@ -33,7 +33,7 @@ This is already an edge case, because there are multiple translation tables, but
 
 You can take advantage of XCode's "Run Script" - build phase. If you specify the language table file by using XCode's placeholder mechanism, you will increase the performance: The script phase will only be run, if any of the input files has changed OR any of the output files has not been created yet.
 
-!(xcode_build_phase.png "XCode Build Phase")
+![XCode Build Phase](xcode_build_phase.png)
 
 After you set up this build phase, you only need to edit the XML language table files.
 
