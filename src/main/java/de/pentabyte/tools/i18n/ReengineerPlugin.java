@@ -67,7 +67,7 @@ public class ReengineerPlugin extends AbstractMojo {
 				+ outputFormat + ", keySeparator=" + keySeparator + ")");
 
 		try {
-			TableProducer.reengineer(inputBasename, outputBasename, outputFormat, tableFile, tableDirectory,
+			TableProducer.reengineer(getLog(), inputBasename, outputBasename, outputFormat, tableFile, tableDirectory,
 					keySeparator);
 		} catch (Exception e) {
 			throw new MojoExecutionException("FEHLER", e);

@@ -86,7 +86,7 @@ public class TableProducer {
 			outputDirectory = inputFile.getParentFile();
 		try {
 			log.info("processing: " + inputFile);
-			transformXML(inputFile, FilenameUtils.getBaseName(inputFile.getName()), inputFile.getParentFile(),
+			transformXML(log, inputFile, FilenameUtils.getBaseName(inputFile.getName()), inputFile.getParentFile(),
 					outputDirectory, outputBasename, outputFormat, keySeparator);
 		} catch (Exception e) {
 			throw new RuntimeException("Problem with [" + inputFile.getAbsolutePath() + "]", e);
@@ -331,11 +331,13 @@ public class TableProducer {
 	/**
 	 * Generates individual properties files based on the processed XML file.
 	 * 
+	 * @param log
+	 * 
 	 * @param baseName
 	 *            path to the generated properties files excluding locale
 	 *            information and extension.
 	 */
-	public static void generateLocalizedFiles(File tableDirectory, String keySeparator, String inputBasename,
+	public static void generateLocalizedFiles(Log log, File tableDirectory, String keySeparator, String inputBasename,
 			Table table, Output output) throws IOException {
 
 		for (ExportedLocale locale : table.getExportedLocales()) {
@@ -344,7 +346,7 @@ public class TableProducer {
 
 		if (output.getJavaAccessor() != null) {
 			JavaAccessor accessor = output.getJavaAccessor();
-			System.out.println("NOW creating java accessor: " + output.getJavaAccessor());
+			log.info("NOW creating java accessor: " + output.getJavaAccessor());
 			JavaAccessorCreator creator = new JavaAccessorCreator(table, keySeparator);
 			creator.write(accessor);
 		}
@@ -353,11 +355,14 @@ public class TableProducer {
 	/**
 	 * Transforms an i18n.xml File into its properties-Files components.
 	 * 
+	 * @param log
+	 * 
 	 * @param is
 	 * @throws Exception
 	 */
-	private static void transformXML(File inputFile, String inputBasename, File includePath, File outputDirectory,
-			String outputBasename, LanguageFileFormat outputFormat, String keySeparator) throws Exception {
+	private static void transformXML(Log log, File inputFile, String inputBasename, File includePath,
+			File outputDirectory, String outputBasename, LanguageFileFormat outputFormat, String keySeparator)
+			throws Exception {
 		Table table = readXmlFile(inputFile, keySeparator);
 
 		Output pluginOutput = new Output();
@@ -367,7 +372,7 @@ public class TableProducer {
 		pluginOutput.setKeySeparator(keySeparator);
 
 		if (table.getOutput().size() == 0) {
-			generateLocalizedFiles(inputFile.getParentFile(), keySeparator, inputBasename, table, pluginOutput);
+			generateLocalizedFiles(log, inputFile.getParentFile(), keySeparator, inputBasename, table, pluginOutput);
 		} else {
 			for (Output output : table.getOutput()) {
 				Output custom = new Output();
@@ -377,7 +382,7 @@ public class TableProducer {
 				custom.setFormat(output.getFormat() == null ? pluginOutput.getFormat() : output.getFormat());
 				custom.setJavaAccessor(output.getJavaAccessor());
 
-				generateLocalizedFiles(inputFile.getParentFile(), keySeparator, inputBasename, table, custom);
+				generateLocalizedFiles(log, inputFile.getParentFile(), keySeparator, inputBasename, table, custom);
 			}
 		}
 	}
@@ -385,12 +390,14 @@ public class TableProducer {
 	/**
 	 * rekonstruiert eine i18n.xml Datei
 	 * 
+	 * @param log
+	 * 
 	 * @throws IOException
 	 * @throws FileNotFoundException
 	 * @throws ParserConfigurationException
 	 * @throws TransformerException
 	 */
-	public static void reengineer(String inputBasename, String outputBasename, LanguageFileFormat outputFormat,
+	public static void reengineer(Log log, String inputBasename, String outputBasename, LanguageFileFormat outputFormat,
 			File tableFile, File tableDirectory, String keySeparator)
 			throws FileNotFoundException, IOException, ParserConfigurationException, TransformerException {
 		Table table = new Table();
@@ -431,7 +438,7 @@ public class TableProducer {
 					if (StringUtils.isEmpty(lang))
 						lang = "de"; // Standardsprache
 
-					readLocalizedFile(file, table, lang, outputFormat);
+					readLocalizedFile(log, file, table, lang, outputFormat);
 				}
 			}
 		}
@@ -448,21 +455,23 @@ public class TableProducer {
 							Matcher fileMatcher = filePattern.matcher(file.getName());
 							if (fileMatcher.matches()) {
 								String lang = dirMatcher.group(1);
-								readLocalizedFile(file, table, lang, outputFormat);
+								readLocalizedFile(log, file, table, lang, outputFormat);
 							}
 						}
 					}
 				}
 			}
+			break;
 		}
 		default:
 			throw new RuntimeException("OutputFormat not implemented: " + outputFormat);
 		}
 
-		writeTableToXml(table, new File(directory, inputBasename + ".xml"), keySeparator);
+		writeTableToXml(log, table, new File(directory, inputBasename + ".xml"), keySeparator, outputFormat,
+				outputBasename);
 	}
 
-	private static void readLocalizedFile(File file, Table table, String lang, LanguageFileFormat outputFormat)
+	private static void readLocalizedFile(Log log, File file, Table table, String lang, LanguageFileFormat outputFormat)
 			throws FileNotFoundException, IOException {
 		ExportedLocale exported = new ExportedLocale();
 		exported.setValue(lang);
@@ -476,18 +485,21 @@ public class TableProducer {
 			break;
 		}
 		case STRINGS: {
-			Pattern pattern = Pattern
-					.compile(" *\"?([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\"? *= *\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\" *; *");
+			Pattern pattern = Pattern.compile(
+					" *\"?([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\"? *= *\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\" *; *(?://.*)?");
 			BufferedReader br = new BufferedReader(
-					new InputStreamReader(new FileInputStream(file), CharEncoding.UTF_16));
+					new InputStreamReader(new FileInputStream(file), CharEncoding.UTF_8));
 			try {
 				String line = br.readLine();
 				while (line != null) {
 					Matcher m = pattern.matcher(line);
 					if (m.matches()) {
-						String key = m.group(1);
-						String value = m.group(2).replace("\\\"", "\"");
+						String key = m.group(1).trim();
+						String value = m.group(2).replace("\\t", "	").replace("\\n", "\n").replace("\\\"", "\"")
+								.trim();
 						p.put(key, value);
+					} else if (StringUtils.isNotEmpty(line)) {
+						log.warn("Ignored line: " + line);
 					}
 					line = br.readLine();
 				}
@@ -514,19 +526,27 @@ public class TableProducer {
 		}
 	}
 
-	private static void writeTableToXml(Table table, File outputFile, String keySeparator)
+	private static void writeTableToXml(Log log, Table table, File outputFile, String keySeparator,
+			LanguageFileFormat format, String outputBasename)
 			throws ParserConfigurationException, TransformerException {
+		log.info("Now creating language table: " + outputFile);
+
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
 		// root elements
 		Document doc = docBuilder.newDocument();
-		Element rootElement = doc.createElement("table");
-		doc.appendChild(rootElement);
+		Element root = doc.createElement("table");
+		root.setAttribute("xmlns", "http://pentabyte.de/maven/i18n");
+		root.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+		root.setAttribute("xsi:schemaLocation",
+				"http://pentabyte.de/maven/i18n http://pentabyte.de/maven/i18n/table-1.1.xsd");
+
+		doc.appendChild(root);
 
 		// exported locales elements
 		Element localeConfig = doc.createElement("locale-config");
-		rootElement.appendChild(localeConfig);
+		root.appendChild(localeConfig);
 
 		for (ExportedLocale exported : table.getExportedLocales()) {
 			Element exLocale = doc.createElement("exported-locale");
@@ -534,11 +554,17 @@ public class TableProducer {
 			localeConfig.appendChild(exLocale);
 		}
 
+		// Output Format
+		Element output = doc.createElement("output");
+		root.appendChild(output);
+		output.setAttribute("format", format.name());
+		output.setAttribute("basename", outputBasename);
+
 		// Mal ganz schnell die flache Liste in eine Hierarchie überführen.
 		Map<String, EntryNode> nodes = table.createHierarchy(keySeparator);
 
 		for (Map.Entry<String, EntryNode> node : nodes.entrySet()) {
-			append(doc, rootElement, node.getKey(), node.getValue());
+			append(doc, root, node.getKey(), node.getValue());
 		}
 
 		// write the content into xml file
