@@ -33,14 +33,14 @@ This is already an edge case, because there are multiple translation tables, but
 
 You can take advantage of XCode's "Run Script" - build phase. If you specify the language table file by using XCode's placeholder mechanism, you will increase the performance: The script phase will only be run, if any of the input files has changed OR any of the output files has not been created yet.
 
-(xcode_build_phase.png "XCode Build Phase")
+!(xcode_build_phase.png "XCode Build Phase")
 
 After you set up this build phase, you only need to edit the XML language table files.
 
 ## Results
 
-- [de.lproj/Localizable.strings](src/test/resources/de.lproj/Localizable.strings)
-- [en.lproj/Localizable.strings](src/test/resources/en.lproj/Localizable.strings)
+- [de.lproj/Localizable.strings](../src/test/resources/de.lproj/Localizable.strings)
+- [en.lproj/Localizable.strings](../src/test/resources/en.lproj/Localizable.strings)
 
 - de.lproj/InfoPlist.strings
 - en.lproj/InfoPlist.strings
