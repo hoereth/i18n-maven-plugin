@@ -73,4 +73,5 @@ This will be the source of your translations for any kind of programming languag
 
 ### Language Files
 
-- [JAVA properties files](README_JAVA.md)
+- [JAVA properties files](doc/README_JAVA.md)
+- [STRINGS files for XCode](doc/README_STRINGS.md)
