@@ -71,7 +71,7 @@ This will be the source of your translations for any kind of programming languag
 </table>
 ```
 
-### Language Files
+### Continue
 
-- [JAVA properties files](doc/README_JAVA.md)
-- [STRINGS files for XCode](doc/README_STRINGS.md)
+- [JAVA project with properties files](doc/README_JAVA.md)
+- [XCode project with strings files](doc/README_STRINGS.md)
