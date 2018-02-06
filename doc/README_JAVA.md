@@ -31,6 +31,6 @@ Add this to your pom - and the plugin will translate all **i18n.xml** files into
 
 ## Results
 
-- [i18n_en.properties](src/test/resources/messages_en.properties)
-- [i18n_de.properties](src/test/resources/messages_de.properties)
-- [i18n_fr.properties](src/test/resources/messages_fr.properties)
+- [messages_en.properties](../src/test/resources/messages_en.properties)
+- [messages_de.properties](../src/test/resources/messages_de.properties)
+- [messages_fr.properties](../src/test/resources/messages_fr.properties)
