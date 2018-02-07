@@ -6,7 +6,7 @@
 	<name>Language File Generator</name>
 	<url>http://maven.apache.org</url>
 	<description>This project defines an XML schema which holds translated text resoures in one file. This maven plugin can create the platform specific message files from this one XML file. Use it during the &quot;generate-resources&quot; phase to keep your language files up to date.</description>
-	<version>1.1.1-SNAPSHOT</version>
+	<version>1.1.1</version>
 
 	<licenses>
 		<license>
