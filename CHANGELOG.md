@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to the i18n-maven-plugin will be documented in this file.
 
-## [1.1.1]
+## [1.1.1] - 2018-02-07
 ### Fixed
 - Reengineer Plugin for XCode / C strings
 ### Added
