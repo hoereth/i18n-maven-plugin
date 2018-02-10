@@ -15,7 +15,7 @@ Language files are designed for performance NOT for easy maintenance. Technical 
 
 ### Format
 
-The plugin will create the language files for you with all their pecularities. Examples:
+The plugin will create the language files for you with all their peculiarities. Examples:
 
 * JAVA properties: They must be **Latin1** encoded. UTF-8 characters can be escaped like this: **ä = \u00E4**. You have to deal with edge cases like the **!** character - it needs to be escaped like this: **\!**. Logical line breaks need to be terminated with a backslash.
 * C strings: They must be UTF-16 encoded.
