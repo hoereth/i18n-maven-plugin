@@ -28,7 +28,7 @@ public class TranslatePlugin extends AbstractMojo {
 	/**
 	 * Recursivly check for all "i18n.xml"-Tables within that directory.
 	 * 
-	 * @parameter property="tableDirectory" default-value="${basedir}/src"
+	 * @parameter property="tableDirectory" default-value="${basedir}"
 	 */
 	private File tableDirectory;
 

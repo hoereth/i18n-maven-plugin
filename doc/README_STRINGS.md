@@ -1,18 +1,8 @@
 # Getting Started with an XCode project
 
-## Reengineer (optional)
-
-You might already have created your Localizable.strings files. Execute the reengineer goal once to create the XML language table from your language files like this:
-
-mvn de.pentabyte.tools:i18n-maven-plugin:reengineer -DoutputFormat=STRINGS -DoutputBasename=Localizable -DinputBasename=Localizable
-
-You might already have more than one localized strings file. Our 2nd example will be the "InfoPlist.strings" file.
-
-mvn de.pentabyte.tools:i18n-maven-plugin:reengineer -DoutputFormat=STRINGS -DoutputBasename=InfoPlist -DinputBasename=InfoPlist
-
 ## pom.xml
 
-This is already an edge case, because there are multiple translation tables, but you can define your *tableDirectory* for your whole project like this:
+In order to execute a maven plugin, you would need to have a pom.xml file. This fragment will be necessary for this plugin:
 
 ```
 	<build>
@@ -29,9 +19,19 @@ This is already an edge case, because there are multiple translation tables, but
 	</build>
 ```
 
+## Reengineer (optional)
+
+You might already have created your Localizable.strings files. Execute the reengineer goal just once to create the XML language table from your language files like this:
+
+mvn de.pentabyte.tools:i18n-maven-plugin:reengineer -DoutputFormat=STRINGS -DoutputBasename=Localizable -DinputBasename=Localizable
+
+You might already have more than one localized strings file. Our 2nd example will be the "InfoPlist.strings" file.
+
+mvn de.pentabyte.tools:i18n-maven-plugin:reengineer -DoutputFormat=STRINGS -DoutputBasename=InfoPlist -DinputBasename=InfoPlist
+
 ## Translation Build Phase
 
-You can take advantage of XCode's "Run Script" - build phase. If you specify the language table file by using XCode's placeholder mechanism, you will increase the performance: The script phase will only be run, if any of the input files has changed OR any of the output files has not been created yet.
+You can take advantage of XCode's "Run Script" - build phase. If you specify the language table file by using XCode's placeholder mechanism, you will increase the performance: The script phase will only be run, if any of the input files has changed OR any of the output files has not been created yet. Please note that your output files will be created within your SRC directory, because that's where the translation files still belong. This is just a "pre-build" step.
 
 ![XCode Build Phase](xcode_build_phase.png)
 
