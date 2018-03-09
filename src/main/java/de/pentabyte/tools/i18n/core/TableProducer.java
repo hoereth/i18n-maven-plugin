@@ -276,13 +276,11 @@ public class TableProducer {
 
 				if (e.getTagName().equals("text")) {
 					String localized = e.getTextContent();
-					if (localized.trim().length() > 0) {
-						String locale = e.getAttribute("locale");
-						if (entry.getTextMap().containsKey(locale)) {
-							throw new RuntimeException("Locale [" + locale + "] already exists for key [" + key + "]");
-						}
-						entry.getTextMap().put(locale, localized);
+					String locale = e.getAttribute("locale");
+					if (entry.getTextMap().containsKey(locale)) {
+						throw new RuntimeException("Locale [" + locale + "] already exists for key [" + key + "]");
 					}
+					entry.getTextMap().put(locale, localized);
 				}
 
 				if (e.getTagName().equals("entry")) {
