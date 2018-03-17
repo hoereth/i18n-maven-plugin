@@ -148,12 +148,12 @@ public class JavaAccessorCreator {
 			comment += "Example: \"" + entry.getValue().getTextMap().entrySet().iterator().next().getValue() + "\"";
 
 			writer.writeComment(comment);
-			writer.writeLine("public static final String " + escapeIdentifier(key) + " = \"" + prefix + key + "\";");
+			writer.writeLine("public static final String " + escapeIdentifier(key) + "$ = \"" + prefix + key + "\";");
 
 			CurlyBracketWriter methodWriter = writer.createCurlyBracketWriter(comment,
 					"public static String " + escapeMethodName(key) + "$(Locale locale" + argsWithType + ")");
 			methodWriter.writeLine("return " + escapeClassName(accessor.getClassName()) + ".translate(locale, "
-					+ escapeIdentifier(key) + "" + args + ");");
+					+ escapeIdentifier(key) + "$" + args + ");");
 			methodWriter.close();
 		}
 	}
