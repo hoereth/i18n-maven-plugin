@@ -68,16 +68,21 @@ public class TranslatePlugin extends AbstractMojo {
 	 */
 	private String keySeparator;
 
+	/**
+	 * @parameter property="targetDir" default-value="${basedir}/src/main/java"
+	 */
+	private File targetDir;
+
 	public void execute() throws MojoExecutionException {
 		getLog().info("Run-Configuration: (tableFile=" + tableFile + ", tableDirectory=" + tableDirectory
 				+ ", inputBasename=" + inputBasename + ", outputDirectory=" + outputDirectory + ", outputBasename="
 				+ outputBasename + " (default: " + inputBasename + ")" + ", outputFormat=" + outputFormat
-				+ ", keySeparator=" + keySeparator + ")");
+				+ ", keySeparator=" + keySeparator + ", targetDir=" + targetDir + ")");
 
 		if (tableFile != null) {
 			try {
 				TableProducer.transformFile(tableFile, outputDirectory, outputBasename, outputFormat, getLog(),
-						keySeparator);
+						keySeparator, targetDir);
 			} catch (Exception e) {
 				throw new MojoExecutionException("Error translating tableFile [" + tableFile + "]", e);
 			}
@@ -88,7 +93,7 @@ public class TranslatePlugin extends AbstractMojo {
 			if (tableDirectory != null) {
 				try {
 					TableProducer.transformRecursively(tableDirectory, inputBasename, outputBasename, outputFormat,
-							getLog(), keySeparator);
+							getLog(), keySeparator, targetDir);
 				} catch (Exception e) {
 					throw new MojoExecutionException("Error translating tableDirectory [" + tableDirectory + "]", e);
 				}

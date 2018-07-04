@@ -3,25 +3,13 @@
  */
 package de.pentabyte.tools.i18n.core;
 
-import java.io.File;
-
 /**
  * @author Michael Höreth
  *
  */
 public class JavaAccessor {
-	File directory;
 	String packageName;
 	String className;
-	String resourceBundleBaseName;
-
-	public File getDirectory() {
-		return directory;
-	}
-
-	public void setDirectory(File directory) {
-		this.directory = directory;
-	}
 
 	public String getPackageName() {
 		return packageName;
@@ -39,14 +27,6 @@ public class JavaAccessor {
 		this.className = className;
 	}
 
-	public String getResourceBundleBaseName() {
-		return resourceBundleBaseName;
-	}
-
-	public void setResourceBundleBaseName(String resourceBundleBaseName) {
-		this.resourceBundleBaseName = resourceBundleBaseName;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -54,7 +34,6 @@ public class JavaAccessor {
 	 */
 	@Override
 	public String toString() {
-		return "directory: " + directory + ", packageName: " + packageName + ", className: " + className
-				+ ", resourceBundleName: " + resourceBundleBaseName;
+		return "packageName: " + packageName + ", className: " + className;
 	}
 }

@@ -62,7 +62,7 @@ public class TableProducer {
 
 		Schema schema;
 		try {
-			schema = sf.newSchema(new StreamSource(TableProducer.class.getResourceAsStream("table-1.1.xsd")));
+			schema = sf.newSchema(new StreamSource(TableProducer.class.getResourceAsStream(Constants.schemaFileName)));
 			factory.setSchema(schema);
 		} catch (SAXException e) {
 			throw new RuntimeException(e);
@@ -80,14 +80,14 @@ public class TableProducer {
 	 * @param outputFormat
 	 */
 	public static void transformFile(File inputFile, File outputDirectory, String outputBasename,
-			LanguageFileFormat outputFormat, Log log, String keySeparator) {
+			LanguageFileFormat outputFormat, Log log, String keySeparator, File targetDir) {
 
 		if (outputDirectory == null)
 			outputDirectory = inputFile.getParentFile();
 		try {
 			log.info("processing: " + inputFile);
 			transformXML(log, inputFile, FilenameUtils.getBaseName(inputFile.getName()), inputFile.getParentFile(),
-					outputDirectory, outputBasename, outputFormat, keySeparator);
+					outputDirectory, outputBasename, outputFormat, keySeparator, targetDir);
 		} catch (Exception e) {
 			throw new RuntimeException("Problem with [" + inputFile.getAbsolutePath() + "]", e);
 		}
@@ -101,7 +101,7 @@ public class TableProducer {
 	 * @param outputFormat
 	 */
 	public static void transformRecursively(File tableDirectory, String inputBasename, String outputBasename,
-			LanguageFileFormat outputFormat, Log log, String keySeparator) {
+			LanguageFileFormat outputFormat, Log log, String keySeparator, File targetDir) {
 		if (!tableDirectory.exists())
 			throw new RuntimeException(tableDirectory + " does not exist!");
 
@@ -110,10 +110,10 @@ public class TableProducer {
 		File[] files = tableDirectory.listFiles();
 		for (File file : files) {
 			if (file.getName().equalsIgnoreCase(inputFilename)) {
-				transformFile(file, file.getParentFile(), outputBasename, outputFormat, log, keySeparator);
+				transformFile(file, file.getParentFile(), outputBasename, outputFormat, log, keySeparator, targetDir);
 			}
 			if (file.isDirectory()) {
-				transformRecursively(file, inputBasename, outputBasename, outputFormat, log, keySeparator);
+				transformRecursively(file, inputBasename, outputBasename, outputFormat, log, keySeparator, targetDir);
 			}
 		}
 	}
@@ -232,20 +232,13 @@ public class TableProducer {
 	private static JavaAccessor readJavaAccessor(File tableDirectory, Element e) {
 		JavaAccessor accessor = new JavaAccessor();
 
-		String directory = e.getAttribute("directory");
 		String packageName = e.getAttribute("packageName");
 		String className = e.getAttribute("className");
-		String resourceBundleBaseName = e.getAttribute("resourceBundleBaseName");
 
-		if (StringUtils.isNotEmpty(directory)) {
-			accessor.setDirectory(new File(tableDirectory, directory));
-		}
 		if (StringUtils.isNotEmpty(packageName))
 			accessor.setPackageName(packageName);
 		if (StringUtils.isNotEmpty(className))
 			accessor.setClassName(className);
-		if (StringUtils.isNotEmpty(resourceBundleBaseName))
-			accessor.setResourceBundleBaseName(resourceBundleBaseName);
 
 		return accessor;
 	}
@@ -336,7 +329,7 @@ public class TableProducer {
 	 *            information and extension.
 	 */
 	public static void generateLocalizedFiles(Log log, File tableDirectory, String keySeparator, String inputBasename,
-			Table table, Output output) throws IOException {
+			Table table, Output output, File targetDir) throws IOException {
 
 		for (ExportedLocale locale : table.getExportedLocales()) {
 			generateLocalizedFile(tableDirectory, inputBasename, locale, table, output);
@@ -344,9 +337,8 @@ public class TableProducer {
 
 		if (output.getJavaAccessor() != null) {
 			JavaAccessor accessor = output.getJavaAccessor();
-			log.info("NOW creating java accessor: " + output.getJavaAccessor());
-			JavaAccessorCreator creator = new JavaAccessorCreator(table, keySeparator);
-			creator.write(accessor);
+			JavaAccessorCreator creator = new JavaAccessorCreator(table, keySeparator, targetDir, output.getBasename());
+			creator.write(log, accessor);
 		}
 	}
 
@@ -359,8 +351,8 @@ public class TableProducer {
 	 * @throws Exception
 	 */
 	private static void transformXML(Log log, File inputFile, String inputBasename, File includePath,
-			File outputDirectory, String outputBasename, LanguageFileFormat outputFormat, String keySeparator)
-			throws Exception {
+			File outputDirectory, String outputBasename, LanguageFileFormat outputFormat, String keySeparator,
+			File targetDir) throws Exception {
 		Table table = readXmlFile(inputFile, keySeparator);
 
 		Output pluginOutput = new Output();
@@ -370,7 +362,8 @@ public class TableProducer {
 		pluginOutput.setKeySeparator(keySeparator);
 
 		if (table.getOutput().size() == 0) {
-			generateLocalizedFiles(log, inputFile.getParentFile(), keySeparator, inputBasename, table, pluginOutput);
+			generateLocalizedFiles(log, inputFile.getParentFile(), keySeparator, inputBasename, table, pluginOutput,
+					targetDir);
 		} else {
 			for (Output output : table.getOutput()) {
 				Output custom = new Output();
@@ -380,7 +373,8 @@ public class TableProducer {
 				custom.setFormat(output.getFormat() == null ? pluginOutput.getFormat() : output.getFormat());
 				custom.setJavaAccessor(output.getJavaAccessor());
 
-				generateLocalizedFiles(log, inputFile.getParentFile(), keySeparator, inputBasename, table, custom);
+				generateLocalizedFiles(log, inputFile.getParentFile(), keySeparator, inputBasename, table, custom,
+						targetDir);
 			}
 		}
 	}
@@ -538,7 +532,7 @@ public class TableProducer {
 		root.setAttribute("xmlns", "http://pentabyte.de/maven/i18n");
 		root.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
 		root.setAttribute("xsi:schemaLocation",
-				"http://pentabyte.de/maven/i18n http://pentabyte.de/maven/i18n/table-1.1.xsd");
+				"http://pentabyte.de/maven/i18n http://pentabyte.de/maven/i18n/" + Constants.schemaFileName);
 
 		doc.appendChild(root);
 

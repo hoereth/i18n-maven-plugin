@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the i18n-maven-plugin will be documented in this file.
 
+## [1.2] - 2018-07-04
+### Changed
+- Java accessor generation improved
+
 ## [1.1.2] - 2018-03-17
 ### Fixed
 - Added '$' to Java accessor constants
