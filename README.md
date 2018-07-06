@@ -34,6 +34,16 @@ No need for "fake" grouping via composite key structures. XML naturally supports
 
 ## Getting started
 
+### Dependency
+
+Maven coordinates:
+
+<dependency>
+  <groupId>de.pentabyte.tools</groupId>
+  <artifactId>i18n-maven-plugin</artifactId>
+  <version>1.2</version>
+</dependency>
+
 ### i18n.xml Table
 
 This will be the source of your translations for any kind of programming language. You can have more than one per project. You can put it anywhere in your project, because we will usually configure the plugin to pick up all files named **i18n.xml**:
