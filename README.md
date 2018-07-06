@@ -38,11 +38,13 @@ No need for "fake" grouping via composite key structures. XML naturally supports
 
 Maven coordinates:
 
+```
 <dependency>
   <groupId>de.pentabyte.tools</groupId>
   <artifactId>i18n-maven-plugin</artifactId>
   <version>1.2</version>
 </dependency>
+```
 
 ### i18n.xml Table
 
