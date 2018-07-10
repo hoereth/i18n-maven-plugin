@@ -1,4 +1,4 @@
-# Getting Started with an XCode project
+# Getting Started with a Web / Javascript project
 
 ## pom.xml
 
