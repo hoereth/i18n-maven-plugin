@@ -62,7 +62,7 @@ This will be the source of your translations for any kind of programming languag
 	</locale-config>
 
 	<output format="JAVA_PROPERTIES" basename="messages">
-		<javaAccessor packageName="test" className="Messages" resourceBundleBaseName="messages"/>
+		<javaAccessor packageName="test" className="Messages"/>
 	</output>
 	<output format="JAVASCRIPT"/>
 	<output format="STRINGS" basename="Localizable"/>
