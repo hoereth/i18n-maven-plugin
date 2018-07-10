@@ -1,4 +1,4 @@
-# Getting Started with a JAVA project
+# Getting Started with a JAVA project with Properties Files
 
 ## pom.xml
 

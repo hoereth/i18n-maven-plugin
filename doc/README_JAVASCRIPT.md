@@ -1,4 +1,4 @@
-# Getting Started with a Web / Javascript project
+# Getting Started with a Web project with Javascript Files
 
 ## pom.xml
 
@@ -33,4 +33,4 @@ Unlike other target language files, you can instantly access the translations li
 alert(i18n.dialog.confirm_update$);
 ```
 
-Please note the dollar sign, which acts as 'terminator'. Otherwise, Javascript would not be able to tell, if you are about to access the tree structure or a concrete value. 
+Please note the dollar sign, which acts as 'terminator'. Without, Javascript would not be able to tell if you are about to access the tree structure or a concrete value. 

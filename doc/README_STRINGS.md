@@ -1,4 +1,4 @@
-# Getting Started with an XCode project
+# Getting Started with an XCode project with String Files
 
 ## pom.xml
 
