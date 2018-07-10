@@ -1,6 +1,6 @@
 # i18n-maven-plugin
 
-Generator for language files. Currently supported target formats: [JAVA](doc/README_JAVA.md), [STRINGS (XCode)](doc/README_STRINGS.md), JAVASCRIPT.
+Generator for language files. Currently supported target formats: [JAVA](doc/README_JAVA.md), [STRINGS (XCode)](doc/README_STRINGS.md), [JAVASCRIPT](doc/README_JAVASCRIPT.md).
 
 ## Goals
 
@@ -54,5 +54,6 @@ This will be the source of your translations for any kind of programming languag
 
 Continue reading now depending on your target format needs:
 
-- [JAVA project with properties files](doc/README_JAVA.md)
-- [XCode project with strings files](doc/README_STRINGS.md)
+- [JAVA project with Properties Files](doc/README_JAVA.md)
+- [XCode project with Strings Files](doc/README_STRINGS.md)
+- [Web project with Javascript Files](doc/README_JAVASCRIPT.md)
