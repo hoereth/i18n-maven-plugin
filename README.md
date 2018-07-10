@@ -36,7 +36,7 @@ No need for "fake" grouping via composite key structures. XML naturally supports
 
 ### Dependency
 
-Maven coordinates:
+Available at Maven Central with these coordinates:
 
 ```
 <dependency>
@@ -48,11 +48,11 @@ Maven coordinates:
 
 ### i18n.xml Table
 
-This will be the source of your translations for any kind of programming language. You can have more than one per project. You can put it anywhere in your project, because we will usually configure the plugin to pick up all files named **i18n.xml**. Please see [this example i18n.xml file](src/test/resources/i18n.xml), which is configured to result in all differnt kinds of language files.
+This will be the source of your translations for any kind of programming language. You can have more than one per project. You can put it anywhere in your project, because we will usually configure the plugin to pick up all files named **i18n.xml**. Please see [this example i18n.xml file](src/test/resources/i18n.xml), which is configured to result in all different kinds of language files. Editing is almost self-explanatory, if your editor supports the provided XSD schema.
 
-### Continue with
+### Target Format
 
-... the language of your choice:
+Continue reading now depending on your target format needs:
 
 - [JAVA project with properties files](doc/README_JAVA.md)
 - [XCode project with strings files](doc/README_STRINGS.md)
