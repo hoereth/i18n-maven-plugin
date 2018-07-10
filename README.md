@@ -48,48 +48,11 @@ Maven coordinates:
 
 ### i18n.xml Table
 
-This will be the source of your translations for any kind of programming language. You can have more than one per project. You can put it anywhere in your project, because we will usually configure the plugin to pick up all files named **i18n.xml**. [Example file](src/test/resources/i18n.xml) within this project:
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<table xmlns="http://pentabyte.de/maven/i18n"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://pentabyte.de/maven/i18n http://pentabyte.de/maven/i18n/table-1.2.xsd">
-	<locale-config>
-		<exported-locale value="de" fallback="en"/>
-		<exported-locale value="en"/>
-		<exported-locale value="fr" fallback="de"/>
-	</locale-config>
-
-	<output format="JAVA_PROPERTIES" basename="messages">
-		<javaAccessor packageName="test" className="Messages"/>
-	</output>
-	<output format="JAVASCRIPT"/>
-	<output format="STRINGS" basename="Localizable"/>
-
-	<entry key="question">
-		<text locale="en">Question</text>
-		<text locale="de">Frage</text>
-		<text locale="fr">Question</text>
-	</entry>
-
-	<entry key="dialog">
-		<entry key="confirm_update">
-			<description>Will be asked when online update is available.</description>
-			<text locale="en">${question}: Do you really want to update?</text>
-			<text locale="de">${question}: Möchten Sie wirklich updaten?</text>
-		</entry>
-		
-		<entry key="next_week">
-			<description>If the user chooses this action, then there should be a reminder next week.</description>
-			<text locale="de">Erinnere mich nächste Woche!</text>
-			<text locale="en">Remind me next week!</text>
-		</entry>
-	</entry>
-</table>
-```
+This will be the source of your translations for any kind of programming language. You can have more than one per project. You can put it anywhere in your project, because we will usually configure the plugin to pick up all files named **i18n.xml**. Please see [this example i18n.xml file](src/test/resources/i18n.xml), which is configured to result in all differnt kinds of language files.
 
 ### Continue with
+
+... the language of your choice:
 
 - [JAVA project with properties files](doc/README_JAVA.md)
 - [XCode project with strings files](doc/README_STRINGS.md)
