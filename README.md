@@ -48,7 +48,7 @@ Maven coordinates:
 
 ### i18n.xml Table
 
-This will be the source of your translations for any kind of programming language. You can have more than one per project. You can put it anywhere in your project, because we will usually configure the plugin to pick up all files named **i18n.xml**:
+This will be the source of your translations for any kind of programming language. You can have more than one per project. You can put it anywhere in your project, because we will usually configure the plugin to pick up all files named **i18n.xml**. [Example file](src/test/resources/i18n.xml) within this project:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
