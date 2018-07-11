@@ -11,7 +11,7 @@ Generator for language files. Currently supported target formats: [JAVA](doc/REA
 
 Language files are designed for performance NOT for easy maintenance. Technical translation mistakes usually remain undetected. This plugin suggests that you rather maintain your translations in a structured and bullet-proof [**i18n.xml**](src/test/resources/i18n.xml) file. The plugin will then generate the language files of your choice. This is one more build step, but the following issues will be taken care of:
 
-### Format
+### Correct Syntax
 
 The plugin will create the language files for you with all their peculiarities. Examples:
 
@@ -26,7 +26,7 @@ No more typos in the keys. No more forgotten translations. The plugin even offer
 
 The XML design gets rid off quite a few redundancies. On top off that, the plugin provides a placeholder mechanism to avoid redundant translations.
 
-### Clarity
+### Structure
 
 No need for "fake" grouping via composite key structures. XML naturally supports nested structures. The translations of all languages will be next to each other, which helps the translator. Also, you can add a description for each translation entry to further explain the intent to the translator.
 
