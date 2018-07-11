@@ -7,11 +7,9 @@ Generator for language files. Currently supported target formats: [JAVA](doc/REA
 * de.pentabyte.tools:i18n-maven-plugin:**translate** (i18n.xml => language files)
 * de.pentabyte.tools:i18n-maven-plugin:**reengineer** (language files => i18n.xml)
 
-See "Getting Started" for configuring your pom for automatically executing the **translate** goal during the _generate-resources_ phase.
-
 ## Introduction
 
-Language files are designed for performance NOT for easy maintenance. Technical translation mistakes usually remain undetected. This plugin suggests that you rather maintain your translations in a structured and bullet-proof [**i18n.xml**](src/test/resources/i18n.xml) file. The plugin will create the language files of your choice. This is one more build step, but the following issues will be taken care of:
+Language files are designed for performance NOT for easy maintenance. Technical translation mistakes usually remain undetected. This plugin suggests that you rather maintain your translations in a structured and bullet-proof [**i18n.xml**](src/test/resources/i18n.xml) file. The plugin will then generate the language files of your choice. This is one more build step, but the following issues will be taken care of:
 
 ### Format
 
@@ -34,25 +32,13 @@ No need for "fake" grouping via composite key structures. XML naturally supports
 
 ## Getting started
 
-### Dependency
-
-Available at Maven Central with these coordinates:
-
-```
-<dependency>
-  <groupId>de.pentabyte.tools</groupId>
-  <artifactId>i18n-maven-plugin</artifactId>
-  <version>1.2</version>
-</dependency>
-```
-
 ### i18n.xml Table
 
 This will be the source of your translations for any kind of programming language. You can have more than one per project. You can put it anywhere in your project, because we will usually configure the plugin to pick up all files named **i18n.xml**. Please see [this example i18n.xml file](src/test/resources/i18n.xml), which is configured to result in all different kinds of language files. Editing is almost self-explanatory, if your editor supports the provided XSD schema.
 
 ### Target Format
 
-Continue reading now depending on your target format needs:
+Please continue reading the appropriate README file:
 
 - [JAVA project with Properties Files](doc/README_JAVA.md)
 - [XCode project with Strings Files](doc/README_STRINGS.md)
