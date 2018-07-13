@@ -6,7 +6,7 @@
 	
 	<packaging>maven-plugin</packaging>
 	<name>Language File Generator</name>
-	<url>http://maven.apache.org</url>
+	<url>https://github.com/hoereth/i18n-maven-plugin</url>
 	<description>This project defines an XML schema which holds translated text resoures in one file. This maven plugin can create the platform specific message files from this one XML file. Use it during the "generate-resources" phase to keep your language files up to date.</description>
 	<inceptionYear>2018</inceptionYear>
 
