@@ -35,6 +35,8 @@ Add this to your pom - and the plugin will translate all **i18n.xml** files into
 - [messages_de.properties](../src/test/resources/messages_de.properties)
 - [messages_fr.properties](../src/test/resources/messages_fr.properties)
 
+Note: It is common to have a default file "messages.properties". It will be created if you add an empty locale to the locale-config element of your [i18n.xml](../src/test/resources/i18n.xml) file.
+
 ## Java Accessor
 
 If you specify the optional _javaAccessor_ element within the _output_ element of the i18n.xml file, a [Java Accessor class](../src/main/java/test/Messages.java) will be generated. It provides you with all translation keys + translation methods. It allows you get your translations checked by the compiler. Usage:
