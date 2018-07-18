@@ -32,7 +32,6 @@
 	<scm>
 		<url>https://github.com/hoereth/i18n-maven-plugin</url>
 		<connection>scm:git:https://github.com/hoereth/i18n-maven-plugin.git</connection>
-		<tag>i18n-maven-plugin-1.0.0</tag>
 	</scm>
 
 	<properties>

@@ -29,7 +29,7 @@ In order to execute a maven plugin, you would need to have a pom.xml file. This 
 
 Unlike other target language files, you can instantly access the translations like this:
 
-```
+```javascript
 alert(i18n.dialog.confirm_update$);
 ```
 

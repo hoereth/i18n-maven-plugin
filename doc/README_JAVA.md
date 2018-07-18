@@ -35,7 +35,7 @@ Add this to your pom - and the plugin will translate all **i18n.xml** files into
 - [messages_de.properties](../src/test/resources/messages_de.properties)
 - [messages_fr.properties](../src/test/resources/messages_fr.properties)
 
-Note: It is common to have a default file "messages.properties". It will be created if you add an empty locale to the locale-config element of your [i18n.xml](../src/test/resources/i18n.xml) file.
+Note: It is common to have a default file "messages.properties". It will be created if you add an locale with empty value="" to the locale-config element of your [i18n.xml](../src/test/resources/i18n.xml) file.
 
 ## Java Accessor
 
@@ -43,12 +43,12 @@ If you specify the optional _javaAccessor_ element within the _output_ element o
 
 ### The traditional way
 
-```
+```java
 String value = ResourceBundle.getBundle("messages", Locale.ENGLISH).getString("dialog.confirm_update");
 ```
 
 ### With Accessor
 
-```
+```java
 String value = Messages.dialog.confirm_update(Locale.ENGLISH); 
 ```
