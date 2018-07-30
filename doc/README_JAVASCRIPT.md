@@ -5,18 +5,18 @@
 In order to execute a maven plugin, you would need to have a pom.xml file. This fragment will be necessary for this plugin:
 
 ```
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>de.pentabyte.tools</groupId>
-				<artifactId>i18n-maven-plugin</artifactId>
-				<version>1.2</version>
-				<configuration>
-						<tableDirectory>${basedir}</tableDirectory>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+<build>
+  <plugins>
+    <plugin>
+      <groupId>de.pentabyte.tools</groupId>
+      <artifactId>i18n-maven-plugin</artifactId>
+      <version>1.2</version>
+      <configuration>
+        <tableDirectory>${basedir}</tableDirectory>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
 ```
 
 ## Results

@@ -5,22 +5,22 @@
 In order to execute a maven plugin, you would need to have a pom.xml file. This fragment will be necessary for this plugin:
 
 ```xml
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>de.pentabyte.tools</groupId>
-				<artifactId>i18n-maven-plugin</artifactId>
-				<version>1.2</version>
-				<configuration>
-						<tableDirectory>${basedir}</tableDirectory>
+<build>
+  <plugins>
+    <plugin>
+      <groupId>de.pentabyte.tools</groupId>
+      <artifactId>i18n-maven-plugin</artifactId>
+      <version>1.2</version>
+      <configuration>
+        <tableDirectory>${basedir}</tableDirectory>
 
-						<!-- useful defaults for XCode, can be overwritten in i18n.xml: -->
-						<outputFormat>STRINGS</outputFormat>
-						<outputBasename>Localizable</outputBasename>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+        <!-- useful defaults for XCode, can be overwritten in i18n.xml: -->
+        <outputFormat>STRINGS</outputFormat>
+        <outputBasename>Localizable</outputBasename>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
 ```
 
 ## Reengineer (optional)
