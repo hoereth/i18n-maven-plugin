@@ -19,7 +19,7 @@ import de.pentabyte.tools.i18n.core.TableProducer;
  */
 public class TranslatePlugin extends AbstractMojo {
 	/**
-	 * Path of i18n-Table.
+	 * Path of i18n-Table. (for when you only have one)
 	 * 
 	 * @parameter property="tableFile"
 	 */
@@ -33,8 +33,8 @@ public class TranslatePlugin extends AbstractMojo {
 	private File tableDirectory;
 
 	/**
-	 * Language Files should be written here. Defaults to directory of table
-	 * file.
+	 * Language Files should be written here. Defaults to directory of
+	 * respective table file.
 	 * 
 	 * @parameter property="outputDirectory"
 	 * 
@@ -42,7 +42,7 @@ public class TranslatePlugin extends AbstractMojo {
 	private File outputDirectory;
 
 	/**
-	 * Name of XML-File.
+	 * Base name of XML-Table-File.
 	 * 
 	 * @parameter property="inputBasename" default-value="i18n"
 	 */
@@ -69,7 +69,7 @@ public class TranslatePlugin extends AbstractMojo {
 	private String keySeparator;
 
 	/**
-	 * Base directory of generated source code files.
+	 * Base directory of generated source code files. Use case: accessor files.
 	 * 
 	 * @parameter property="targetDir" default-value="${basedir}/src/main/java"
 	 */
