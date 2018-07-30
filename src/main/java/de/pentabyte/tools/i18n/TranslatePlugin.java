@@ -33,7 +33,7 @@ public class TranslatePlugin extends AbstractMojo {
 	private File tableDirectory;
 
 	/**
-	 * Properties Files should be written here. Defaults to directory of table
+	 * Language Files should be written here. Defaults to directory of table
 	 * file.
 	 * 
 	 * @parameter property="outputDirectory"
@@ -42,14 +42,14 @@ public class TranslatePlugin extends AbstractMojo {
 	private File outputDirectory;
 
 	/**
-	 * Name of XML-File. (optional)
+	 * Name of XML-File.
 	 * 
 	 * @parameter property="inputBasename" default-value="i18n"
 	 */
 	private String inputBasename;
 
 	/**
-	 * Name of Properties Files. (optional)
+	 * Base name of Language Files.
 	 * 
 	 * @parameter property="outputBasename"
 	 * 
@@ -69,6 +69,8 @@ public class TranslatePlugin extends AbstractMojo {
 	private String keySeparator;
 
 	/**
+	 * Base directory of generated source code files.
+	 * 
 	 * @parameter property="targetDir" default-value="${basedir}/src/main/java"
 	 */
 	private File targetDir;
