@@ -39,7 +39,7 @@ Note: It is common to have a default file "messages.properties". It will be crea
 
 ## Java Accessor
 
-If you specify the optional _javaAccessor_ element within the _output_ element of the i18n.xml file, a [Java Accessor class](../src/main/java/test/Messages.java) will be generated. It provides you with all translation keys + translation methods. It allows you get your translations checked by the compiler. Usage:
+If you specify the optional _javaAccessor_ element within the _output_ element of the i18n.xml file, a Java Accessor class will be generated ([see example](../src/main/java/test/Messages.java)). It provides you with all translation keys + translation methods. It allows you get your translations checked by the compiler. Usage:
 
 ### The traditional way
 
@@ -50,5 +50,8 @@ String value = ResourceBundle.getBundle("messages", Locale.ENGLISH).getString("d
 ### With Accessor
 
 ```java
-String value = Messages.dialog.confirm_update(Locale.ENGLISH); 
+// retrieve translation key constant ...
+String key = Messages.dialog.confirm_update$;
+// ... or use the translation method
+String text = Messages.dialog.confirm_update(Locale.ENGLISH);
 ```
