@@ -45,7 +45,7 @@ The de.pentabyte.tools:i18n-maven-plugin:translate Plugin provides these configu
 - **inputBasename** — Base name of XML-Table-File. Default: *i18n*
 - **targetDir** — Base directory of generated source code files. Use case: accessor files. Default: *${basedir}/src/main/java*
 
-Please note that you can specifiy the following parameters within the <output> element of each of your i18n.xml files instead of defining them for the whole project:
+Please note that you can alternatively specifiy the following parameters within the <output> element of each of your i18n.xml files:
 
 - **outputDirectory** — Language Files should be written here. Defaults to directory of respective table file.
 - **outputFormat** — JAVA_PROPERTIES, STRINGS, JAVASCRIPT
