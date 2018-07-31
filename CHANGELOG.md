@@ -1,6 +1,7 @@
 # Changelog
 All notable changes to the i18n-maven-plugin will be documented in this file.
 
+## [1.2.1] - 2018-07-31
 ### Changed
 - Pretty-printing for javascript files
 
