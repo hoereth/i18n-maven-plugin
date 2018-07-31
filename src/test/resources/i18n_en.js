@@ -6,4 +6,4 @@ var i18n = {
     "confirm_update$" : "Question: Do you really want to update?",
     "next_week$" : "Remind me next week!"
   }
-}
+};

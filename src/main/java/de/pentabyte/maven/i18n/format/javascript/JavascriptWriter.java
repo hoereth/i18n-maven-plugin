@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.fasterxml.jackson.core.JsonGenerator.Feature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
@@ -57,7 +58,7 @@ public class JavascriptWriter implements LanguageFileWriter {
 		String resultingBasename = (output.getBasename() == null ? (inputBasename == null ? "messages" : inputBasename)
 				: output.getBasename());
 
-		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter().without(Feature.AUTO_CLOSE_TARGET);
 
 		PrintWriter writer = new PrintWriter(new File(output.getDirectory(),
 				resultingBasename + suffix + "." + LanguageFileFormat.JAVASCRIPT.getExtension()));

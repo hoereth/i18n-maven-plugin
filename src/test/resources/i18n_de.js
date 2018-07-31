@@ -6,4 +6,4 @@ var i18n = {
     "confirm_update$" : "Frage: Möchten Sie wirklich updaten?",
     "next_week$" : "Erinnere mich nächste Woche!"
   }
-}
+};
