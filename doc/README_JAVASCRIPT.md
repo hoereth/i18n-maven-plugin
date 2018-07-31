@@ -10,7 +10,7 @@ In order to execute a maven plugin, you would need to have a pom.xml file. This 
     <plugin>
       <groupId>de.pentabyte.tools</groupId>
       <artifactId>i18n-maven-plugin</artifactId>
-      <version>1.2</version>
+      <version>1.2.1</version>
       <configuration>
         <tableDirectory>${basedir}</tableDirectory>
       </configuration>
