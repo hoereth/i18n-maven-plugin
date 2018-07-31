@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
 import javax.lang.model.SourceVersion;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.logging.Log;
 
 import de.pentabyte.maven.i18n.format.java.IndentedFileWriter.CurlyBracketWriter;

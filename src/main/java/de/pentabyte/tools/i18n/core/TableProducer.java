@@ -26,7 +26,6 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang.CharEncoding;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.logging.Log;
 import org.w3c.dom.DOMException;
@@ -479,8 +478,7 @@ public class TableProducer {
 		case STRINGS: {
 			Pattern pattern = Pattern.compile(
 					" *\"?([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\"? *= *\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\" *; *(?://.*)?");
-			BufferedReader br = new BufferedReader(
-					new InputStreamReader(new FileInputStream(file), CharEncoding.UTF_8));
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
 			try {
 				String line = br.readLine();
 				while (line != null) {

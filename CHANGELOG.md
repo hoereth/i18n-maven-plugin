@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to the i18n-maven-plugin will be documented in this file.
 
+### Changed
+- Pretty-printing for javascript files
+
 ## [1.2] - 2018-07-04
 ### Changed
 - Java accessor generation improved

@@ -12,7 +12,9 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
-import org.json.simple.JSONObject;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import de.pentabyte.maven.i18n.output.LanguageFileWriter;
 import de.pentabyte.tools.i18n.core.Entry;
@@ -55,10 +57,14 @@ public class JavascriptWriter implements LanguageFileWriter {
 		String resultingBasename = (output.getBasename() == null ? (inputBasename == null ? "messages" : inputBasename)
 				: output.getBasename());
 
+		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+
 		PrintWriter writer = new PrintWriter(new File(output.getDirectory(),
 				resultingBasename + suffix + "." + LanguageFileFormat.JAVASCRIPT.getExtension()));
 		writer.write("/* " + fileComment + " */\n\n");
-		writer.write("var " + resultingBasename + " = " + JSONObject.toJSONString(structure) + ";");
+		writer.write("var " + resultingBasename + " = ");
+		ow.writeValue(writer, structure);
+		writer.write(";");
 		writer.close();
 	}
 
