@@ -42,13 +42,13 @@ The de.pentabyte.tools:i18n-maven-plugin:translate Plugin provides these configu
 
 - **tableDirectory** — Recursivly check for all "i18n.xml"-Tables within that directory. Default: *${basedir}*
 - **tableFile** — Path of i18n-Table. (for when you only have one)
-- **inputBasename** — Base name of XML-Table-File. Default: *i18n*
+- **inputBasename** — Base name of XML-Table-File(s). Default: *i18n*
 - **targetDir** — Base directory of generated source code files. Use case: accessor files. Default: *${basedir}/src/main/java*
 
 Please note that you can alternatively specifiy the following parameters within the &lt;output&gt; element of each of your i18n.xml files:
 
 - **outputDirectory** — Language Files should be written here. Defaults to directory of respective table file.
-- **outputFormat** — JAVA_PROPERTIES, STRINGS, JAVASCRIPT
+- **outputFormat** — [JAVA_PROPERTIES](doc/README_JAVA.md), [STRINGS](doc/README_STRINGS.md), [JAVASCRIPT](doc/README_JAVASCRIPT.md)
 - **outputBasename** — Base name of language files. Defaults according to outputFormat.
 - **keySeparator** — Keys of nested entries will be separated with this value. Default: *.*
 
