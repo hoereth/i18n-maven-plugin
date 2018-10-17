@@ -50,7 +50,7 @@ Please note that you can alternatively specifiy the following parameters within 
 - **outputDirectory** — Language Files should be written here. Defaults to directory of respective table file.
 - **outputFormat** — [JAVA_PROPERTIES](doc/README_JAVA.md), [STRINGS](doc/README_STRINGS.md), [JAVASCRIPT](doc/README_JAVASCRIPT.md)
 - **outputBasename** — Base name of language files. Defaults according to outputFormat.
-- **keySeparator** — Keys of nested entries will be separated with this value. Default: *.*
+- **keySeparator** — Keys of nested entries will be separated with this value. Default: *dot*.
 
 ### Target Format
 
