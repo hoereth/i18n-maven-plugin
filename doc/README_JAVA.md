@@ -64,7 +64,7 @@ You might already have an existing project with properties files. Execute the re
 mvn de.pentabyte.tools:i18n-maven-plugin:reengineer -DoutputFormat=JAVA -DoutputBasename=messages
 ```
 
-### Related Links
+## Related Links
 
 * The [Java Message Format](https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html) provides a solution to writing translations which may contain localized
 dates, times, numbers and singular/plural variations.
