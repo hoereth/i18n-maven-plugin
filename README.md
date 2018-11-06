@@ -24,7 +24,7 @@ No more typos in the keys. No more forgotten translations. The plugin even offer
 
 ### Redundancy
 
-The XML design gets rid off quite a few redundancies. On top off that, the plugin provides a placeholder mechanism to avoid redundant translations. Example: "The application ${global.appname} will now exit."
+The XML design gets rid off quite a few redundancies. On top off that, the plugin provides a placeholder mechanism to avoid redundant translations. Example: "The application ${someTranslationKey.forAppName} will now exit." 
 
 ### Structure
 
