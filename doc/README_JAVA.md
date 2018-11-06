@@ -55,3 +55,8 @@ String key = Messages.dialog.confirm_update$;
 // ... or use the translation method
 String text = Messages.dialog.confirm_update(Locale.ENGLISH);
 ```
+
+### Related Links
+
+* The [Java Message Format](https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html) provides a solution to writing translations which may contain localized
+dates, times, numbers and singular/plural variations.
