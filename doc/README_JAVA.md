@@ -29,8 +29,6 @@ Add this to your pom - and the plugin will translate all **i18n.xml** files into
 </build>
 ```
 
-This example configuration will scan your _basedir_ for all _i18n.xml_ files and will create properties files as such *messages_{locale}.properties*.
-
 ## Results
 
 - [messages_en.properties](../src/test/resources/messages_en.properties)
@@ -56,6 +54,14 @@ String value = ResourceBundle.getBundle("messages", Locale.ENGLISH).getString("d
 String key = Messages.dialog.confirm_update$;
 // ... or use the translation method
 String text = Messages.dialog.confirm_update(Locale.ENGLISH);
+```
+
+## Re-Engineer the i18n.xml file
+
+You might already have an existing project with properties files. Execute the reengineer goal just once to create the XML language table from your language files like this:
+
+```
+mvn de.pentabyte.tools:i18n-maven-plugin:reengineer -DoutputFormat=JAVA -DoutputBasename=messages
 ```
 
 ### Related Links

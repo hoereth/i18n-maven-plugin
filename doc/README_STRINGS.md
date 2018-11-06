@@ -23,17 +23,7 @@ In order to execute a maven plugin, you would need to have a pom.xml file. This 
 </build>
 ```
 
-This example configuration will scan your _basedir_ for all _i18n.xml_ files and create Strings files as such *{Locale}/Localizable.strings*.
-
-## Reengineer (optional)
-
-You might already have created your Localizable.strings files. Execute the reengineer goal just once to create the XML language table from your language files like this:
-
-mvn de.pentabyte.tools:i18n-maven-plugin:reengineer -DoutputFormat=STRINGS -DoutputBasename=Localizable -DinputBasename=Localizable
-
-You might already have more than one localized strings file. Our 2nd example will be the "InfoPlist.strings" file.
-
-mvn de.pentabyte.tools:i18n-maven-plugin:reengineer -DoutputFormat=STRINGS -DoutputBasename=InfoPlist -DinputBasename=InfoPlist
+This example configuration will scan your **basedir** for all **i18n.xml** files and create Strings files as such **{Locale}/Localizable.strings**.
 
 ## Translation Build Phase
 
@@ -50,3 +40,15 @@ After you set up this build phase, you only need to edit the XML language table 
 
 - de.lproj/InfoPlist.strings
 - en.lproj/InfoPlist.strings
+
+## Re-Engineer the i18n.xml file
+
+You might already have an existing project with Localizable.strings files. Execute the reengineer goal just once to create the XML language table from your language files like this:
+
+```
+mvn de.pentabyte.tools:i18n-maven-plugin:reengineer -DoutputFormat=STRINGS -DoutputBasename=Localizable -DinputBasename=Localizable
+```
+
+You might already have more than one localized strings file. Our 2nd example will be the "InfoPlist.strings" file.
+
+mvn de.pentabyte.tools:i18n-maven-plugin:reengineer -DoutputFormat=STRINGS -DoutputBasename=InfoPlist -DinputBasename=InfoPlist
