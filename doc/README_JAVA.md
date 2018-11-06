@@ -29,6 +29,8 @@ Add this to your pom - and the plugin will translate all **i18n.xml** files into
 </build>
 ```
 
+This example configuration will scan your _basedir_ for all _i18n.xml_ files and will create properties files as such *messages_{locale}.properties*.
+
 ## Results
 
 - [messages_en.properties](../src/test/resources/messages_en.properties)

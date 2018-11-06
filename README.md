@@ -9,14 +9,14 @@ Generator for language files. Currently supported target formats: [JAVA](doc/REA
 
 ## Introduction
 
-Language files are designed for performance NOT for easy maintenance. Technical translation mistakes usually remain undetected. This plugin suggests that you rather maintain your translations in a structured and bullet-proof [**i18n.xml**](src/test/resources/i18n.xml) table file. The plugin will then generate the language files of your choice. This is one more build step, but the following issues will be taken care of:
+Language files are designed for application performance NOT for easy maintenance. Technical translation mistakes usually remain undetected. This plugin suggests that you rather maintain your translations in a structured and bullet-proof [**i18n.xml**](src/test/resources/i18n.xml) table file. The plugin will then generate the language files of your choice. This is one more build step, but the following issues will be taken care of:
 
 ### Correct Syntax
 
 The plugin will create the language files for you with all their peculiarities. Examples:
 
 * JAVA properties: They must be **Latin1** encoded. UTF-8 characters can be escaped like this: **ä = \u00E4**. You have to deal with edge cases like the **!** character - it needs to be escaped like this: **\!**. Logical line breaks need to be terminated with a backslash.
-* C strings: They must be UTF-16 encoded.
+* STRINGS (XCode): They must be UTF-16 encoded.
 
 ### Consistency
 
@@ -28,7 +28,7 @@ The XML design gets rid off quite a few redundancies. On top off that, the plugi
 
 ### Structure
 
-No need for "fake" grouping via composite key structures. XML naturally supports nested structures. The translations of all languages will be next to each other, which helps the translator. Also, you can add a description for each translation entry to further explain the intent to the translator.
+No need for "fake" grouping via composite key structures. XML naturally supports nested structures. The translations of all languages will be next to each other, which helps the translator. I might even say that I started to enjoy doing translations. ;) Also, you can add a description for each translation entry to further explain the intent to the translator.
 
 ## Getting started
 

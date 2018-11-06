@@ -23,6 +23,8 @@ In order to execute a maven plugin, you would need to have a pom.xml file. This 
 </build>
 ```
 
+This example configuration will scan your _basedir_ for all _i18n.xml_ files and create Strings files as such *{Locale}/Localizable.strings*.
+
 ## Reengineer (optional)
 
 You might already have created your Localizable.strings files. Execute the reengineer goal just once to create the XML language table from your language files like this:

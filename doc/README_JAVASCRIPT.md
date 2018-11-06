@@ -19,6 +19,8 @@ In order to execute a maven plugin, you would need to have a pom.xml file. This 
 </build>
 ```
 
+This example configuration will make the plugin scan your _basedir_ for _i18n.xml_ files and will create JSON files as such: *i18n_{locale}.js*.
+
 ## Results
 
 - [i18n_de.js](../src/test/resources/i18n_de.js)
