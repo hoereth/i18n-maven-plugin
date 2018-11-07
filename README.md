@@ -4,12 +4,12 @@ Generator for language files. Currently supported target formats: [JAVA](doc/REA
 
 ## Goals
 
-* de.pentabyte.tools:i18n-maven-plugin:**translate** (i18n.xml => language files)
-* de.pentabyte.tools:i18n-maven-plugin:**reengineer** (language files => i18n.xml, only available for [JAVA](doc/README_JAVA.md) & [STRINGS (XCode)](doc/README_STRINGS.md)).
+* de.pentabyte.tools:i18n-maven-plugin:**translate** ([i18n.xml](src/test/resources/i18n.xml) => language files)
+* de.pentabyte.tools:i18n-maven-plugin:**reengineer** (language files => [i18n.xml](src/test/resources/i18n.xml), only available for [JAVA](doc/README_JAVA.md) & [STRINGS (XCode)](doc/README_STRINGS.md)).
 
 ## Introduction
 
-Language files are designed for application performance NOT for easy maintenance. Technical translation mistakes usually remain undetected. This plugin suggests that you rather maintain your translations in a structured and bullet-proof [**i18n.xml**](src/test/resources/i18n.xml) table file. The plugin will then generate the language files of your choice. This is one more build step, but the following issues will be taken care of:
+Language files are designed for application performance NOT for easy maintenance. Technical translation mistakes usually remain undetected. This plugin suggests that you rather maintain your translations in a structured and bullet-proof [i18n.xml](src/test/resources/i18n.xml) table file. The plugin will then generate the language files of your choice. This is one more build step, but the following issues will be taken care of:
 
 ### Correct Syntax
 
@@ -20,7 +20,7 @@ The plugin will create the language files for you with all their peculiarities. 
 
 ### Consistency
 
-No more typos in the keys. No more forgotten translations. The plugin even offers a language fallback mechanism, which allows you to temporarily fill missing translations with a secondary language.
+No more typos in the keys. No more forgotten translations. The plugin even offers a language fallback mechanism, which allows you to temporarily fill missing translations with a secondary language (see output section of example [i18n.xml](src/test/resources/i18n.xml) file).
 
 ### Redundancy
 
