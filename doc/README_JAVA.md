@@ -39,7 +39,7 @@ Note: It is common to have a default file "messages.properties". It will be crea
 
 ## Java Accessor
 
-If you specify the optional _javaAccessor_ element (here: packageName="test" className="Messages") within the _output_ element of the i18n.xml file, a Java Accessor class _Messages.java_ will be generated ([see example](../src/main/java/test/Messages.java)). It provides you with all translation keys + additional translation methods. It allows you get your translations checked by the compiler. Usage:
+If you specify the optional _javaAccessor_ element (here: packageName="test" className="Messages") within the _output_ element of the [i18n.xml](src/test/resources/i18n.xml#L19) file, a Java Accessor class _Messages.java_ will be generated ([see example](../src/main/java/test/Messages.java)). It provides you with all translation keys + additional translation methods. It allows you get your translations checked by the compiler. Usage:
 
 ### The traditional way
 
