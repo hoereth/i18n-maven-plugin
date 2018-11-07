@@ -2,10 +2,10 @@
 
 Generator for language files. Currently supported target formats: [JAVA](doc/README_JAVA.md), [STRINGS (XCode)](doc/README_STRINGS.md), [JAVASCRIPT](doc/README_JAVASCRIPT.md).
 
-## Goals
+## Maven Goals
 
 * de.pentabyte.tools:i18n-maven-plugin:**translate** ([i18n.xml](src/test/resources/i18n.xml) => language files)
-* de.pentabyte.tools:i18n-maven-plugin:**reengineer** (language files => [i18n.xml](src/test/resources/i18n.xml), only available for [JAVA](doc/README_JAVA.md) & [STRINGS (XCode)](doc/README_STRINGS.md)).
+* de.pentabyte.tools:i18n-maven-plugin:**reengineer** (language files => [i18n.xml](src/test/resources/i18n.xml), only available for [JAVA](doc/README_JAVA.md) & [STRINGS](doc/README_STRINGS.md)).
 
 ## Introduction
 
@@ -20,7 +20,7 @@ The plugin will create the language files for you with all their peculiarities. 
 
 ### Consistency
 
-No more typos in the keys. No more forgotten translations. The plugin even offers a language fallback mechanism, which allows you to temporarily fill missing translations with a secondary language (see output section of example [i18n.xml](src/test/resources/i18n.xml) file).
+No more typos in the keys. No more forgotten translations. The plugin even offers a language fallback mechanism, which allows you to temporarily fill missing translations with a secondary language (see _locale-config_ section of example [i18n.xml](src/test/resources/i18n.xml) file).
 
 ### Redundancy
 
@@ -28,7 +28,7 @@ The XML design gets rid off quite a few redundancies. On top off that, the plugi
 
 ### Structure
 
-No need for "fake" grouping via composite key structures. XML naturally supports nested structures. The translations of all languages will be next to each other, which helps the translator. I might even say that I started to enjoy doing translations. ;) Also, you can add a description for each translation entry to further explain the intent to the translator.
+No need for "fake" grouping via composite key structures. XML naturally supports nested structures. The translations of all languages will be next to each other, which helps the translator. I might even say that I started to enjoy doing translations. ;) Also, you will find the perfect location to add a description for each translation entry to further explain the intent to the translator.
 
 ## Getting started
 
