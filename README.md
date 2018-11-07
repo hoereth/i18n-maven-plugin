@@ -5,8 +5,7 @@ Generator for language files. Currently supported target formats: [JAVA](doc/REA
 ## Goals
 
 * de.pentabyte.tools:i18n-maven-plugin:**translate** (i18n.xml => language files)
-* de.pentabyte.tools:i18n-maven-plugin:**reengineer** (language files => i18n.xml)
-  Currently only available for [JAVA](doc/README_JAVA.md) & [STRINGS (XCode)](doc/README_STRINGS.md).
+* de.pentabyte.tools:i18n-maven-plugin:**reengineer** (language files => i18n.xml, only available for [JAVA](doc/README_JAVA.md) & [STRINGS (XCode)](doc/README_STRINGS.md)).
 
 ## Introduction
 
