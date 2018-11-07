@@ -20,7 +20,7 @@ The plugin will create the language files for you with all their peculiarities. 
 
 ### Consistency
 
-No more typos in the keys. No more forgotten translations. The plugin even offers a language fallback mechanism, which allows you to temporarily fill missing translations with a secondary language (see _locale-config_ section of example [i18n.xml](src/test/resources/i18n.xml) file).
+No more typos in the keys. No more forgotten translations. The plugin even offers a language fallback mechanism, which allows you to temporarily fill missing translations with a secondary language (see _&lt;locale-config&gt;_ section of example [i18n.xml](src/test/resources/i18n.xml) file).
 
 ### Redundancy
 
@@ -38,14 +38,14 @@ These will be the source of your translations for any kind of programming langua
 
 ### Configuration
 
-The de.pentabyte.tools:i18n-maven-plugin:translate Plugin provides these configuration params:
+The de.pentabyte.tools:i18n-maven-plugin:translate plugin provides these configuration params:
 
 - **tableDirectory** — Recursivly check for all "i18n.xml"-Tables within that directory. Default: *${basedir}*
 - **tableFile** — Path of i18n-Table. (for when you only have one)
 - **inputBasename** — Base name of XML-Table-File(s). Default: *i18n*
 - **targetDir** — Base directory of generated source code files. Use case: accessor files. Default: *${basedir}/src/main/java*
 
-Please note that you can alternatively specifiy the following parameters within the &lt;output&gt; element of each of your i18n.xml files:
+Please note that you can alternatively specifiy the following parameters within the _&lt;output&gt;_ element of each of your i18n.xml files:
 
 - **outputDirectory** — Language Files should be written here. Defaults to directory of respective table file.
 - **outputFormat** — [JAVA_PROPERTIES](doc/README_JAVA.md), [STRINGS](doc/README_STRINGS.md), [JAVASCRIPT](doc/README_JAVASCRIPT.md)
