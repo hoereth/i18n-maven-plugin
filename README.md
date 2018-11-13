@@ -7,7 +7,7 @@ Generator for language files. Currently supported target formats: [JAVA](doc/REA
 * de.pentabyte.tools:i18n-maven-plugin:**translate** ([i18n.xml](src/test/resources/i18n.xml) => language files)
 * de.pentabyte.tools:i18n-maven-plugin:**reengineer** (language files => [i18n.xml](src/test/resources/i18n.xml), only available for [JAVA](doc/README_JAVA.md) & [STRINGS](doc/README_STRINGS.md)).
 
-## Introduction
+## Motivation
 
 Language files are designed for application performance NOT for easy maintenance. Technical translation mistakes usually remain undetected. This plugin suggests that you rather maintain your translations in a structured and bullet-proof [i18n.xml](src/test/resources/i18n.xml) table file. The plugin will then generate the language files of your choice. This is one more build step, but the following issues will be taken care of:
 
