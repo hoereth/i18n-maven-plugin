@@ -38,7 +38,7 @@ These will be the source of your translations for any kind of programming langua
 
 ### Configuration
 
-The de.pentabyte.tools:i18n-maven-plugin:translate plugin provides these configuration params:
+The plugin provides these configuration params:
 
 - **tableDirectory** — Recursivly check for all "i18n.xml"-Tables within that directory. Default: *${basedir}*
 - **tableFile** — Path of i18n-Table. (for when you only have one)
