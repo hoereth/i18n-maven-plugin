@@ -1,7 +1,9 @@
 # Changelog
 All notable changes to the i18n-maven-plugin will be documented in this file.
 
-## [1.2.2-SNAPSHOT]
+## [1.2.3-SNAPSHOT]
+
+## [1.2.2]
 ### Fixed
 - single apostrophe escaping for Java properties file
 - Always use UTF-8 for Java Accessor files
