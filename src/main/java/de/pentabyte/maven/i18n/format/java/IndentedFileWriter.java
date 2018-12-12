@@ -4,20 +4,21 @@
 package de.pentabyte.maven.i18n.format.java;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
-
-import org.apache.commons.lang3.StringUtils;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author Michael Höreth
  */
 public class IndentedFileWriter {
-	FileWriter writer;
+	Writer writer;
 	int indentation = 0;
 
 	public IndentedFileWriter(File file) throws IOException {
-		writer = new FileWriter(file);
+		writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
 	}
 
 	public void writeLine(String line) throws IOException {
@@ -102,7 +103,7 @@ public class IndentedFileWriter {
 	 * @throws IOException
 	 */
 	public void writeComment(String comment) throws IOException {
-		if (StringUtils.isNotEmpty(comment)) {
+		if (comment != null && comment.length() > 0) {
 			CommentWriter writer = createCommentWriter();
 			writer.writeLines(comment.split("\n"));
 			writer.close();
