@@ -4,20 +4,23 @@
 package de.pentabyte.maven.i18n.format.java;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
-import org.apache.commons.lang3.StringUtils;
+import com.sun.xml.internal.ws.util.StringUtils;
 
 /**
  * @author Michael Höreth
  */
 public class IndentedFileWriter {
-	FileWriter writer;
+	Writer writer;
 	int indentation = 0;
 
 	public IndentedFileWriter(File file) throws IOException {
-		writer = new FileWriter(file);
+		writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
 	}
 
 	public void writeLine(String line) throws IOException {
