@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.pentabyte.tools</groupId>
 	<artifactId>i18n-maven-plugin</artifactId>
-	<version>1.2.2-SNAPSHOT</version>
+	<version>1.2.2</version>
 	
 	<packaging>maven-plugin</packaging>
 	<name>Language File Generator</name>
@@ -32,7 +32,7 @@
 	<scm>
 		<url>https://github.com/hoereth/i18n-maven-plugin</url>
 		<connection>scm:git:https://github.com/hoereth/i18n-maven-plugin.git</connection>
-	  <tag>HEAD</tag>
+	  <tag>i18n-maven-plugin-1.2.2</tag>
   </scm>
 
 	<properties>
