@@ -10,8 +10,6 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 
-import com.sun.xml.internal.ws.util.StringUtils;
-
 /**
  * @author Michael Höreth
  */
@@ -105,7 +103,7 @@ public class IndentedFileWriter {
 	 * @throws IOException
 	 */
 	public void writeComment(String comment) throws IOException {
-		if (StringUtils.isNotEmpty(comment)) {
+		if (comment != null && comment.length() > 0) {
 			CommentWriter writer = createCommentWriter();
 			writer.writeLines(comment.split("\n"));
 			writer.close();
