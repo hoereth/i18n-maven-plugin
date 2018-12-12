@@ -52,7 +52,7 @@ public class JavaAccessorCreator {
 		File accessorFile = new File(targetDir,
 				accessor.getPackageName().replace('.', '/') + "/" + accessor.getClassName() + ".java");
 
-		log.info("NOW creating JAVA accessor: " + accessorFile);
+		log.info("NOW creating JAVA accessor in targetDir: " + accessorFile);
 
 		accessorFile.getParentFile().mkdirs();
 
