@@ -66,5 +66,9 @@ mvn de.pentabyte.tools:i18n-maven-plugin:reengineer -DoutputFormat=JAVA -Doutput
 
 ## Related Links
 
-* The [Java Message Format](https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html) provides a solution to writing translations which may contain localized
-dates, times, numbers and singular/plural variations.
+* The [Java Message Format](https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html) provides a solution to writing translations including localized parameters:
+    * ``This message contains parameter {0} and another one {1}.``
+    * ``Today is {0,date,long}.`` 
+    * ``Next update: {0,time,medium}``
+    * ``Price: {0,number,#.##}``
+    * ``There {0,choice,0#are no files|1#is one file|1<are {0,number,integer} files}.``
