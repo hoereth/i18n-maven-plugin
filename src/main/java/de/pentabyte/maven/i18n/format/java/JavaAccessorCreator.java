@@ -111,7 +111,7 @@ public class JavaAccessorCreator {
 		}
 	}
 
-	private static Pattern PLACEHOLDER = Pattern.compile("\\{(\\d+)\\}");
+	static Pattern PLACEHOLDER = Pattern.compile("\\{(\\d+)(,[^\\}]+)?\\}");
 
 	/**
 	 * @param writer

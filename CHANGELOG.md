@@ -1,7 +1,9 @@
 # Changelog
 All notable changes to the i18n-maven-plugin will be documented in this file.
 
-## [1.2.3-SNAPSHOT]
+## [1.2.3]
+### Fixed
+- JavaAccessorCreator now handles compound parameters
 
 ## [1.2.2]
 ### Fixed
