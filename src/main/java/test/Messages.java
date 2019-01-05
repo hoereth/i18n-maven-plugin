@@ -11,51 +11,68 @@ import java.util.ResourceBundle;
 
 public class Messages {
 	private static String BASE_NAME = "messages";
-	/**
-	 * Example: "Question"
-	 */
-	public static final String question$ = "question";
 
-	/**
-	 * Example: "Question"
-	 */
-	public static String question$(Locale locale) {
-		return Messages.translate(locale, question$);
-	}
+	public static class form {
 
-	/**
-	 * If the user chooses this action, then there should be a reminder next week.
-	 */
-	public static class dialog {
-		/**
-		 * Will be asked when online update is available.
-		 * 
-		 * Example: "${question}: Do you really want to update?"
-		 */
-		public static final String confirm_update$ = "dialog.confirm_update";
+		public static class validation {
+			/**
+			 * Example: "Validation Error"
+			 */
+			public static final String error$ = "form.validation.error";
 
-		/**
-		 * Will be asked when online update is available.
-		 * 
-		 * Example: "${question}: Do you really want to update?"
-		 */
-		public static String confirm_update$(Locale locale) {
-			return Messages.translate(locale, confirm_update$);
-		}
-		/**
-		 * If the user chooses this action, then there should be a reminder next week.
-		 * 
-		 * Example: "Erinnere mich nächste Woche!"
-		 */
-		public static final String next_week$ = "dialog.next_week";
+			/**
+			 * Example: "Validation Error"
+			 */
+			public static String error$(Locale locale) {
+				return Messages.translate(locale, error$);
+			}
 
-		/**
-		 * If the user chooses this action, then there should be a reminder next week.
-		 * 
-		 * Example: "Erinnere mich nächste Woche!"
-		 */
-		public static String next_week$(Locale locale) {
-			return Messages.translate(locale, next_week$);
+			public static class error {
+				/**
+				 * Example: "Please check the ${form.validation.error} before submitting the form."
+				 */
+				public static final String summary$ = "form.validation.error.summary";
+
+				/**
+				 * Example: "Please check the ${form.validation.error} before submitting the form."
+				 */
+				public static String summary$(Locale locale) {
+					return Messages.translate(locale, summary$);
+				}
+			}
+			/**
+			 * Example: "Field is required."
+			 */
+			public static final String required$ = "form.validation.required";
+
+			/**
+			 * Example: "Field is required."
+			 */
+			public static String required$(Locale locale) {
+				return Messages.translate(locale, required$);
+			}
+			/**
+			 * Example: "This not a valid email address."
+			 */
+			public static final String email$ = "form.validation.email";
+
+			/**
+			 * Example: "This not a valid email address."
+			 */
+			public static String email$(Locale locale) {
+				return Messages.translate(locale, email$);
+			}
+			/**
+			 * Example: "This not a valid url."
+			 */
+			public static final String url$ = "form.validation.url";
+
+			/**
+			 * Example: "This not a valid url."
+			 */
+			public static String url$(Locale locale) {
+				return Messages.translate(locale, url$);
+			}
 		}
 	}
 	public static String translate(Locale locale, String key, Object... params) {

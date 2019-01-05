@@ -23,23 +23,34 @@
 	
 	<!-- Below: the actual translation content, structured by nested ENTRY nodes. -->
 
-	<entry key="question">
-		<text locale="en">Question</text>
-		<text locale="de">Frage</text>
-		<text locale="fr">Question</text>
-	</entry>
-
-	<entry key="dialog">
-		<entry key="confirm_update">
-			<description>Will be asked when online update is available.</description>
-			<text locale="en">${question}: Do you really want to update?</text>
-			<text locale="de">${question}: Möchten Sie wirklich updaten?</text>
-		</entry>
-		
-		<entry key="next_week">
-			<description>If the user chooses this action, then there should be a reminder next week.</description>
-			<text locale="de">Erinnere mich nächste Woche!</text>
-			<text locale="en">Remind me next week!</text>
+	<entry key="form">
+		<description>Form entry and validation.</description>
+		<entry key="validation">
+			<entry key="error">
+				<text locale="en">Validation Error</text>
+				<text locale="de">Validierungsfehler</text>
+				<text locale="fr">Erreur de Validation</text>
+				<entry key="summary">
+					<text locale="en">Please check the ${form.validation.error} before submitting the form.</text>
+					<text locale="de">Bitte prüfe den ${form.validation.error} vor dem Absenden des Formulars.</text>
+					<text locale="fr">Veuillez vérifier le ${form.validation.error} avant de soumettre le formulaire.</text>
+				</entry>
+			</entry>
+			<entry key="required">
+				<text locale="en">Field is required.</text>
+				<text locale="de">Das ist ein Pflichtfeld.</text>
+				<text locale="fr">C'est un champ obligatoire.</text>
+			</entry>
+			<entry key="email">
+				<text locale="en">This not a valid email address.</text>
+				<text locale="de">Das ist keine gültige E-Mail Adresse.</text>
+				<text locale="fr">Ce n'est pas une adresse email valide.</text>
+			</entry>
+			<entry key="url">
+				<text locale="en">This not a valid url.</text>
+				<text locale="de">Das ist keine gültige URL.</text>
+				<text locale="fr">Ce n'est pas une URL valide.</text>
+			</entry>
 		</entry>
 	</entry>
 </table>
