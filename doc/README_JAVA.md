@@ -44,16 +44,16 @@ If you specify the optional _javaAccessor_ element (here: packageName="test" cla
 ### The traditional way
 
 ```java
-String value = ResourceBundle.getBundle("messages", Locale.ENGLISH).getString("dialog.confirm_update");
+String value = ResourceBundle.getBundle("messages", Locale.ENGLISH).getString("form.validation.required");
 ```
 
 ### With Accessor
 
 ```java
 // retrieve translation key constant ...
-String key = Messages.dialog.confirm_update$;
+String key = Messages.form.validation.required$;
 // ... or use the translation method
-String text = Messages.dialog.confirm_update(Locale.ENGLISH);
+String text = Messages.form.validation.required(Locale.ENGLISH);
 ```
 
 ## Re-Engineer the i18n.xml file

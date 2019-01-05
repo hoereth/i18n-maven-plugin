@@ -32,7 +32,7 @@ This example configuration will make the plugin scan your **basedir** for **i18n
 Unlike other target language files, you can instantly access the translations like this:
 
 ```javascript
-alert(i18n.dialog.confirm_update$);
+alert(i18n.form.validation.required$);
 ```
 
 Please note the dollar sign, which acts as 'terminator'. Without it, Javascript would not be able to tell if you are about to access the tree structure or a concrete value. 
