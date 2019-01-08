@@ -18,7 +18,7 @@ import de.pentabyte.tools.i18n.core.Output;
 import de.pentabyte.tools.i18n.core.Table;
 
 /**
- * Produces "Strings" files for macOS, iOS, tvOS.
+ * Produces "Strings" language files for macOS, iOS, tvOS.
  * 
  * @author Michael Höreth
  */

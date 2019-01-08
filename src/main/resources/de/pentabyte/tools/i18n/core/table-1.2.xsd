@@ -4,7 +4,10 @@
 	elementFormDefault="qualified">
 	<xs:element name="table">
 		<xs:complexType>
-			<xs:sequence>
+            <xs:annotation>
+            	<xs:documentation>This data structure holds translations as well as a few configuration options.</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
 				<xs:element name="locale-config" maxOccurs="1" minOccurs="1">
                     <xs:annotation>
                     	<xs:documentation>Translations should be provided for the locales defined here.</xs:documentation>
@@ -133,11 +136,19 @@
 		<xs:sequence>
 			<xs:element minOccurs="0" maxOccurs="1" name="description"
 				type="xs:string">
-				<xs:annotation></xs:annotation>
+				<xs:annotation>
+					<xs:documentation>Informal description of the text. May include hints to the translator about the use case.</xs:documentation>
+				</xs:annotation>
 			</xs:element>
 			<xs:element minOccurs="0" maxOccurs="unbounded" name="text">
-				<xs:complexType>
-					<xs:simpleContent>
+                <xs:annotation>
+                	<xs:documentation>Translated text of this entry.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:annotation>
+                    	<xs:documentation>The body of this tag contains the translated text in the language specified as in the "locale" attribute.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleContent>
 						<xs:extension base="xs:string">
 							<xs:attribute use="optional" name="locale" type="xs:string">
 								<xs:annotation>
@@ -153,10 +164,15 @@
 			</xs:element>
 			<xs:element name="entry" type="i18n:entryType" maxOccurs="unbounded"
 				minOccurs="0">
+                <xs:annotation>
+                	<xs:documentation>sub entries</xs:documentation>
+                </xs:annotation>
 			</xs:element>
 		</xs:sequence>
 		<xs:attribute name="key" type="xs:string">
-			<xs:annotation></xs:annotation>
+			<xs:annotation>
+				<xs:documentation>The lookup-key of the entry.</xs:documentation>
+			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
 </xs:schema>

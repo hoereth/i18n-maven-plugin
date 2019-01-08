@@ -43,7 +43,7 @@ public class JavaAccessorCreator {
 	}
 
 	/**
-	 * Create a java class to access the language files.
+	 * Create a java source file to access the language files.
 	 * 
 	 * @param log
 	 * 
@@ -170,8 +170,10 @@ public class JavaAccessorCreator {
 	}
 
 	/**
-	 * @param key
-	 * @return
+	 * The implementation currently does not (yet) do any escaping.
+	 * 
+	 * @throws RuntimeException,
+	 *             if identifier is no valid Java property name.
 	 */
 	private String escapeIdentifier(String identifier) {
 		if (!SourceVersion.isName(identifier))
@@ -180,8 +182,7 @@ public class JavaAccessorCreator {
 	}
 
 	/**
-	 * @param key
-	 * @return
+	 * The implementation currently does not (yet) do any escaping.
 	 */
 	private String escapeMethodName(String name) {
 		if (!SourceVersion.isName(name))
@@ -190,8 +191,7 @@ public class JavaAccessorCreator {
 	}
 
 	/**
-	 * @param key
-	 * @return
+	 * The implementation currently does not (yet) do any escaping.
 	 */
 	private String escapeClassName(String key) {
 		if (!SourceVersion.isName(key))

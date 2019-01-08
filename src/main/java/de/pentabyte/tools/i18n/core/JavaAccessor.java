@@ -4,8 +4,9 @@
 package de.pentabyte.tools.i18n.core;
 
 /**
+ * Java Accessor Configuration
+ * 
  * @author Michael Höreth
- *
  */
 public class JavaAccessor {
 	String packageName;

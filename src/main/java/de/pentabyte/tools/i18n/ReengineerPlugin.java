@@ -9,7 +9,7 @@ import de.pentabyte.tools.i18n.core.LanguageFileFormat;
 import de.pentabyte.tools.i18n.core.TableProducer;
 
 /**
- * Goal which constructs i18n.xml from messages files.
+ * Goal which constructs i18n.xml from language files.
  * 
  * @author Michael Höreth
  * 

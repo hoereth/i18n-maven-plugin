@@ -9,8 +9,8 @@ import de.pentabyte.tools.i18n.core.LanguageFileFormat;
 import de.pentabyte.tools.i18n.core.TableProducer;
 
 /**
- * Goal which produces messages.properties (or Localizable.string, or
- * JAVASCRIPT) files from i18n.xml Tables
+ * Goal which produces language files (or Localizable.string, or JAVASCRIPT)
+ * files from i18n.xml Tables
  * 
  * @author Michael Höreth
  * 

@@ -1,7 +1,7 @@
 package de.pentabyte.tools.i18n.core;
 
 /**
- * Supported language file formats.
+ * List of supported language file formats.
  * 
  * @author Michael Höreth
  */

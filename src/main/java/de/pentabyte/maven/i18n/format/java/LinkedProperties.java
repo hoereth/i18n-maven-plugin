@@ -5,7 +5,7 @@ import java.util.Enumeration;
 import java.util.LinkedHashSet;
 
 /**
- * Properties, which keeps the order of keys.
+ * Properties implementation, which keeps the order of keys.
  * 
  * @author Michael Höreth
  */

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package de.pentabyte.maven.i18n.format.java;
 
 import java.io.File;
@@ -11,6 +8,8 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * Handles writing text files and keeps track of indentation.
+ * 
  * @author Michael Höreth
  */
 public class IndentedFileWriter {
@@ -46,6 +45,10 @@ public class IndentedFileWriter {
 		writer.write("\n");
 	}
 
+	/**
+	 * Allows you to write comments as plain text. Takes care of all slashes and
+	 * asterisks of a typical block comment for you.
+	 */
 	public static class CommentWriter {
 		final IndentedFileWriter fileWriter;
 
@@ -72,6 +75,10 @@ public class IndentedFileWriter {
 		return new CommentWriter(this);
 	}
 
+	/**
+	 * Allows to write text, but takes care of opening and closing curly
+	 * brackets around your text.
+	 */
 	public static class CurlyBracketWriter {
 		final IndentedFileWriter fileWriter;
 
@@ -98,6 +105,8 @@ public class IndentedFileWriter {
 	}
 
 	/**
+	 * Convenience method to write just one comment.
+	 * 
 	 * @param indentedFileWriter
 	 * @param comment
 	 * @throws IOException

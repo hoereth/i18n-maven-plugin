@@ -25,7 +25,7 @@ import de.pentabyte.tools.i18n.core.Output;
 import de.pentabyte.tools.i18n.core.Table;
 
 /**
- * Produces plain "javascript" files.
+ * Produces plain "javascript" language files.
  * 
  * @author Michael Höreth
  */

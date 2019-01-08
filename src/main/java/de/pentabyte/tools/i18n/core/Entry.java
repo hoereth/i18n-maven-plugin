@@ -10,7 +10,13 @@ import java.util.Map;
  * @author Michael Höreth
  */
 public class Entry {
+	/**
+	 * Informal description of the text.
+	 */
 	private String description;
+	/**
+	 * locale -> translation
+	 */
 	private Map<String, String> textMap;
 
 	public String getDescription() {

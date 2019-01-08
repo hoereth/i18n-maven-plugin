@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only needed for refactoring.
+ * Only needed for reengineer goal of the plugin.
  * 
  * @author Michael Höreth
  */

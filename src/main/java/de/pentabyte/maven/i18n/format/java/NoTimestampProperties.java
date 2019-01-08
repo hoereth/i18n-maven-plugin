@@ -8,7 +8,7 @@ import java.util.Enumeration;
 import java.util.Properties;
 
 /**
- * Private Methods have been copied from Properties. Sole difference to the
+ * Private Methods have been copied 1:1 from Properties. Sole difference to the
  * original: no timestamp will be written, because this causes unecessary
  * conflicts with source control. Plus: the original "store" Method had a bug
  * related to the escaping of apostrophes.
