@@ -8,6 +8,7 @@ Add this to your pom - and the plugin will translate all **i18n.xml** files into
 <build>
   <plugins>
     <plugin>
+      <!-- https://mvnrepository.com/artifact/de.pentabyte.tools/i18n-maven-plugin -->
       <groupId>de.pentabyte.tools</groupId>
       <artifactId>i18n-maven-plugin</artifactId>
       <version>1.2.3</version>

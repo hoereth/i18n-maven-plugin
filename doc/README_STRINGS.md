@@ -8,6 +8,7 @@ In order to execute a maven plugin, you would need to have a pom.xml file. This 
 <build>
   <plugins>
     <plugin>
+      <!-- https://mvnrepository.com/artifact/de.pentabyte.tools/i18n-maven-plugin -->
       <groupId>de.pentabyte.tools</groupId>
       <artifactId>i18n-maven-plugin</artifactId>
       <version>1.2.3</version>
