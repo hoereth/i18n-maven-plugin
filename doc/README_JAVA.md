@@ -73,4 +73,4 @@ mvn de.pentabyte.tools:i18n-maven-plugin:reengineer -DoutputFormat=JAVA -Doutput
     * ``Next update: {0,time,medium}``
     * ``Price: {0,number,#.##}``
     * ``There {0,choice,0#are no files|1#is one file|1<are {0,number,integer} files}.``
-        * Note: if stored in an XML file, the '<' needs to be escaped, e.g.: &lt;   
+        * Note: if stored in an XML file, the '<' needs to written as XML entity: &amp;lt;  
