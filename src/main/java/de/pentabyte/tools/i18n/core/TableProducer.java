@@ -107,12 +107,18 @@ public class TableProducer {
 		String inputFilename = inputBasename + ".xml";
 
 		File[] files = tableDirectory.listFiles();
-		for (File file : files) {
-			if (file.getName().equalsIgnoreCase(inputFilename)) {
-				transformFile(file, file.getParentFile(), outputBasename, outputFormat, log, keySeparator, targetDir);
-			}
-			if (file.isDirectory()) {
-				transformRecursively(file, inputBasename, outputBasename, outputFormat, log, keySeparator, targetDir);
+		if (files == null) {
+			log.error("cannot read from directory: " + tableDirectory);
+		} else {
+			for (File file : files) {
+				if (file.getName().equalsIgnoreCase(inputFilename)) {
+					transformFile(file, file.getParentFile(), outputBasename, outputFormat, log, keySeparator,
+							targetDir);
+				}
+				if (file.isDirectory()) {
+					transformRecursively(file, inputBasename, outputBasename, outputFormat, log, keySeparator,
+							targetDir);
+				}
 			}
 		}
 	}
@@ -419,6 +425,10 @@ public class TableProducer {
 		case JAVA_PROPERTIES:
 		case JAVASCRIPT: {
 			File[] files = directory.listFiles();
+			if (files == null) {
+				log.error("cannot read from directory: " + directory);
+				break;
+			}
 			Pattern pattern = Pattern.compile(outputBasename + "(_(\\w+))\\." + outputFormat.getExtension());
 
 			for (File file : files) {
@@ -436,17 +446,26 @@ public class TableProducer {
 			break;
 		case STRINGS: {
 			File[] dirs = directory.listFiles();
+			if (dirs == null) {
+				log.error("cannot read from directory: " + directory);
+				break;
+			}
 			Pattern filePattern = Pattern.compile(outputBasename + "\\." + outputFormat.getExtension());
 			Pattern dirPattern = Pattern.compile("(\\w+_?\\w*)\\.lproj");
 			for (File dir : dirs) {
 				if (dir.isDirectory()) {
 					Matcher dirMatcher = dirPattern.matcher(dir.getName());
 					if (dirMatcher.matches()) {
-						for (File file : dir.listFiles()) {
-							Matcher fileMatcher = filePattern.matcher(file.getName());
-							if (fileMatcher.matches()) {
-								String lang = dirMatcher.group(1);
-								readLocalizedFile(log, file, table, lang, outputFormat);
+						File[] files = dir.listFiles();
+						if (files == null) {
+							log.error("cannot read from directory: " + dir);
+						} else {
+							for (File file : files) {
+								Matcher fileMatcher = filePattern.matcher(file.getName());
+								if (fileMatcher.matches()) {
+									String lang = dirMatcher.group(1);
+									readLocalizedFile(log, file, table, lang, outputFormat);
+								}
 							}
 						}
 					}
