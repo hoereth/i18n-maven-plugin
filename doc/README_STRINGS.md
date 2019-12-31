@@ -17,7 +17,6 @@ In order to execute a maven plugin, you would need to have a pom.xml file. This 
 
         <!-- useful defaults for XCode, can be overwritten in i18n.xml: -->
         <outputFormat>STRINGS</outputFormat>
-        <outputBasename>Localizable</outputBasename>
       </configuration>
     </plugin>
   </plugins>
