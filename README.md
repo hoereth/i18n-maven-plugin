@@ -1,4 +1,4 @@
-# i18n-maven-plugin
+# :tropical_fish: i18n-maven-plugin
 
 Generator for language files. Currently supported target formats: [JAVA](doc/README_JAVA.md), [STRINGS (XCode)](doc/README_STRINGS.md), [JAVASCRIPT](doc/README_JAVASCRIPT.md).
 
