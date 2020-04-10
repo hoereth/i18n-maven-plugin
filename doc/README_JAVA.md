@@ -72,5 +72,5 @@ mvn de.pentabyte.tools:i18n-maven-plugin:reengineer -DoutputFormat=JAVA -Doutput
     * ``Today is {0,date,long}.`` 
     * ``Next update: {0,time,medium}``
     * ``Price: {0,number,#.##}``
-    * ``There {0,choice,0#are no files|1#is one file|2#are {0,number,integer} files}.``
+    * ``There {0,choice,0#are no files|1#is one file|1<are {0,number,integer} files}.``
         * Note: if stored in an XML file, the **<** needs to escaped as XML entity: **&amp;lt;**.  
