@@ -21,7 +21,7 @@ Add this to your pom - and the plugin will translate all **i18n.xml** files into
         </execution>
       </executions>
       <configuration>
-        <tableDirectory>${basedir}</tableDirectory>
+        <tableDirectory>${basedir}/src/resources</tableDirectory>
         <outputBasename>messages</outputBasename>
         <outputFormat>JAVA_PROPERTIES</outputFormat>
       </configuration>
