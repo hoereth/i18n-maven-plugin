@@ -1,6 +1,6 @@
 # :tropical_fish: i18n-maven-plugin
 
-Generator for language files. Currently supported target formats: [JAVA](doc/README_JAVA.md), [STRINGS (XCode)](doc/README_STRINGS.md), [JAVASCRIPT](doc/README_JAVASCRIPT.md).
+Generator for language files. Currently supported target formats: [JAVA](doc/README_JAVA.md), [STRINGS (Xcode)](doc/README_STRINGS.md), [JAVASCRIPT](doc/README_JAVASCRIPT.md).
 
 ## Maven Goals
 
@@ -16,7 +16,7 @@ Language files are designed for application performance NOT for easy maintenance
 The plugin will create the language files for you with all their peculiarities. Examples:
 
 * JAVA properties: They must be **Latin1** encoded. UTF-8 characters can be escaped like this: **ä = \u00E4**. You have to deal with edge cases like the exclamation mark or colon character - they need to be escaped with a backslash (**\\! \\:**). Logical line breaks need to be terminated with a backslash.
-* STRINGS (XCode): They must be UTF-16 encoded.
+* STRINGS (Xcode): They must be UTF-16 encoded.
 
 ### Consistency
 
@@ -57,5 +57,5 @@ Please note that you can alternatively specifiy the following parameters within 
 To get more into detail, please continue reading the appropriate README file. However, you can mix formats within one project. You will also find information about the usage of the reengineer plugin, if available:
 
 - [JAVA project with Properties Files](doc/README_JAVA.md)
-- [XCode project with Strings Files](doc/README_STRINGS.md)
+- [Xcode project with Strings Files](doc/README_STRINGS.md)
 - [Web project with Javascript Files](doc/README_JAVASCRIPT.md)
