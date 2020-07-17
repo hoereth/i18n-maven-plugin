@@ -1,4 +1,4 @@
-# Getting Started with an XCode project with String Files
+# Getting Started with an Xcode project with String Files
 
 ## pom.xml
 
@@ -15,7 +15,7 @@ In order to execute a maven plugin, you would need to have a pom.xml file. This 
       <configuration>
         <tableDirectory>${basedir}</tableDirectory>
 
-        <!-- useful defaults for XCode, can be overwritten in i18n.xml: -->
+        <!-- useful defaults for Xcode, can be overwritten in i18n.xml: -->
         <outputFormat>STRINGS</outputFormat>
       </configuration>
     </plugin>
@@ -27,11 +27,12 @@ This example configuration will scan your **basedir** for all **i18n.xml** files
 
 ## Translation Build Phase
 
-You can take advantage of XCode's "Run Script" - build phase. If you specify the language table file by using XCode's placeholder mechanism, you will increase the performance: The script phase will only be run, if any of the input files has changed OR any of the output files has not been created yet. Please note that your output files will be created within your SRC directory, because that's where the translation files still belong. This is just a "pre-build" step.
+You can take advantage of 
+'s "Run Script" - build phase. If you specify the language table file by using Xcode's placeholder mechanism, you will increase the performance: The script phase will only be run, if any of the input files has changed OR any of the output files has not been created yet. Please note that your output files will be created within your SRC directory, because that's where the translation files still belong. This is just a "pre-build" step.
 
-![XCode Build Phase](xcode_build_phase.png)
+![Xcode Build Phase](xcode_build_phase.png)
 
-After you set up this build phase, you only need to edit the XML language table files and XCode will automatically run the i18n maven plugin for you.
+After you set up this build phase, you only need to edit the XML language table files and Xcode will automatically run the i18n maven plugin for you.
 
 ## Results
 
