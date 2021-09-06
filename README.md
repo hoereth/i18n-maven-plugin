@@ -15,7 +15,7 @@ Language files are designed for application performance NOT for easy maintenance
 
 The plugin will create the language files for you with all their peculiarities. Examples:
 
-* JAVA properties: They must be **Latin1** encoded. UTF-8 characters can be escaped like this: **ä = \u00E4**. You have to deal with edge cases like the exclamation mark or colon character - they need to be escaped with a backslash (**\\! \\:**). Logical line breaks need to be terminated with a backslash.
+* JAVA properties: They must be **Latin1** encoded (for Java <= 8, [Java 9](https://docs.oracle.com/javase/9/docs/api/java/util/Properties.html) has changed the default to UTF-8). UTF-8 characters can be escaped like this: **ä = \u00E4**. You have to deal with edge cases like the exclamation mark or colon character - they need to be escaped with a backslash (**\\! \\:**). Logical line breaks need to be terminated with a backslash.
 * STRINGS (Xcode): They must be UTF-16 encoded.
 
 ### Consistency
